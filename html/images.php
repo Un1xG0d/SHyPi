@@ -23,6 +23,8 @@
   <title>
     Serenity Monitor
   </title>
+  <!-- JS Files -->
+  <script type="text/javascript" src="./assets/js/simple-lightbox.js"></script>
   <!-- Favicon -->
   <link href="./assets/img/brand/favicon.png" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -33,6 +35,9 @@
   <link href="./assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="./assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
+  <link href="./css/images.css" rel="stylesheet" />
+  <link href="./css/simple-lightbox.css" rel="stylesheet" />
+  <link href='simplelightbox-master/dist/simplelightbox.min.css' rel='stylesheet' type='text/css'>
 </head>
 
 <body class="">
@@ -43,7 +48,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="./index.html">
+      <a class="navbar-brand pt-0" href="index.php">
         <img src="./assets/img/brand/serenity-logo.png" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
@@ -101,7 +106,7 @@
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a href="./index.html">
+              <a href="index.php">
                 <img src="./assets/img/brand/serenity-logo.png">
               </a>
             </div>
@@ -127,17 +132,17 @@
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
-          <a class=" nav-link" href="index.php">
+          <a class=" nav-link " href="index.php">
             <i class="material-icons text-blue">dashboard</i>Dashboard
             </a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link active" href="graphs.php">
+          <li class="nav-item">
+            <a class="nav-link " href="graphs.php">
               <i class="material-icons text-blue">bar_chart</i>Graphs
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link " href="images.php">
+          <li class="nav-item active">
+            <a class="nav-link active" href="images.php">
               <i class="material-icons text-blue">camera_alt</i>Images
             </a>
           </li>
@@ -166,7 +171,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="graphs.php">Graphs</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="index.php">Dashboard</a>
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
@@ -224,10 +229,6 @@
     <!-- End Navbar -->
     <!-- Header -->
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-      <div class="container-fluid">
-        <div class="header-body">
-        </div>
-      </div>
     </div>
     <div class="container-fluid mt--7">
       <div class="row mt-5">
@@ -236,50 +237,71 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Select Timeframe:</h3>
+                  <h3 class="mb-0">Image Gallery</h3>
+                </div>
+                <div class="col text-right">
+                  <a href="#!" class="btn btn-sm btn-primary">Filter</a>
                 </div>
               </div>
             </div>
-            <center>
-              <div>
-                  <ul>
-                      <li><a type="button" href="#" class="btn btn-sm btn-primary" onclick="drawChart(1);">1 Day</a></li>
-                      <li><a type="button" href="#" class="btn btn-sm btn-primary" onclick="drawChart(7);">1 Week</a></li>
-                      <li><a type="button" href="#" class="btn btn-sm btn-primary" onclick="drawChart(30);">1 Month</a></li>
-                      <li><a type="button" href="#" class="btn btn-sm btn-primary" onclick="drawChart(90);">3 Months</a></li>
-                      <li><a type="button" href="#" class="btn btn-sm btn-primary" onclick="drawChart(180);">6 Months</a></li>
-                      <li><a type="button" href="#" class="btn btn-sm btn-primary" onclick="drawChart(365);">1 Year</a></li>
-                  </ul>
-              </div>
-            </center>
+            <div class='gallerycontainer'>
+             <div class="gallery">
+             
+              <?php 
+              // Image extensions
+              $image_extensions = array("png","jpg","jpeg","gif");
 
-            <div class="panel-group">
-            <?php
-                // Read the sensors that are connected from the database and create a panel for each graph
-                include "php/sensor_col_names.php";
-                foreach ($colnames as $title){
-echo "                <div class=\"panel panel-info\">\n";
-echo "                    <div class=\"panel-heading\">\n";
-echo "                        <div class=\"panel-title text-center\" id=\"" .$title. "_name\">\n";
-echo "                        </div>\n";
-echo "                    </div>\n";
-echo "                    <div class=\"panel-body\" id=\"" .$title. "_graph\" style=\"height:400px\" class=\"panel-body\">\n";
-echo "                    </div>\n";
-echo "                </div>\n";
-            }
-            ?>
-            <script>
-                <?php
-                    // populate the graph panel with webpage names
-                    include "php/sensor_webpage_names.php";
-                ?>
-            </script>
+              // Target directory
+              $dir = 'camimages/';
+              if (is_dir($dir)){
+             
+               if ($dh = opendir($dir)){
+                $count = 1;
+
+                // Read files
+                while (($file = readdir($dh)) !== false){
+
+                 if($file != '' && $file != '.' && $file != '..'){
+
+                  // Image path
+                  $image_name = (string) $file;
+                  $image_path = "camimages/".$file;
+             
+                  $image_ext = pathinfo($image_path, PATHINFO_EXTENSION);
+
+                  // Check its not folder and it is image file
+                  if(!is_dir($image_path) && 
+                     in_array($image_ext,$image_extensions)){
+               ?>
+
+                   <!-- Image -->
+                   <a href="<?php echo $image_path; ?>">
+                    <img src="<?php echo $image_path; ?>" alt="" title="<?php echo $image_name; ?>"/>
+                   </a>
+                   <!-- --- -->
+                   <?php
+
+                   // Break
+                   if( $count%4 == 0){
+                   ?>
+                     <div class="clear"></div>
+                   <?php 
+                   }
+                   $count++;
+                  }
+                 }
+             
+                }
+                closedir($dh);
+               }
+              }
+             ?>
+             </div>
             </div>
-
           </div>
         </div>
       </div>
-      
+
       <!-- Footer -->
       <footer class="footer">
         <div class="row align-items-center justify-content-xl-between">
@@ -295,6 +317,15 @@ echo "                </div>\n";
   <!--   Core   -->
   <script src="./assets/js/plugins/jquery/dist/jquery.min.js"></script>
   <script src="./assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Script -->
+            <script type='text/javascript'>
+            $(document).ready(function(){
+
+             // Intialize gallery
+             var gallery = $('.gallery a').simpleLightbox();
+
+            });
+            </script>
   <!--   Optional JS   -->
   <script src="./assets/js/plugins/chart.js/dist/Chart.min.js"></script>
   <script src="./assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
@@ -309,28 +340,5 @@ echo "                </div>\n";
       });
   </script>
 </body>
-
-<!-- Google Charts JavaScript
-================================================== -->
-<script src="https://www.google.com/jsapi"></script>
-
-<!-- Custom JavaScript
-================================================== -->
-<script src="js/hydropi.js"></script>
-<!-- When the page has loaded draw the graphs into each panel -->
-<script>
-  google.load("visualization", "1", {packages:["corechart"]});
-  google.setOnLoadCallback(function(){drawChart(1)});
-</script>
-<!-- Redraw the graphs to fit when the window size changes -->
-<script>
-  var chart1 = "done";
-  $(window).resize(function() {
-      if(chart1=="done"){
-          chart1 = "waiting";
-          setTimeout(function(){drawChart(1);chart1 = "done"},1000);
-      }
-  });
-</script>
 
 </html>

@@ -629,7 +629,7 @@ def get_settings_table_values():
 
 def send_email(alert_readings):
 
-    #Generate an email when there is a problem with the pool
+    #Generate an email when there is a problem with the water
 
     # Get the email addresses to send the alert to
 
@@ -649,12 +649,10 @@ def send_email(alert_readings):
     msg = MIMEMultipart()
     msg['From'] = fromaddr
     msg['To'] = toaddr
-    msg['Subject'] = "Pool Alert"
+    msg['Subject'] = "Serenity-HydroPi Alert"
 
-    body = ("Hi\n\nThis is your Pool\n\nYou should know that the following "
-    "sensor(s) are indicating that there is a problem that needs your "
-    "attention\n{}\nPlease check this by logging into\n\nwww.yourwebsite.com"
-    "\n\n Regards\n\nYour HydroPi").format(out_of_limit_sensors.upper())
+    body = ("Hi\n\nThe following sensor(s) are indicating that there is a problem that needs your "
+    "attention\n{}\nPlease check this by logging into the console.\n").format(out_of_limit_sensors.upper())
 
     msg.attach(MIMEText(body, 'plain'))
 
@@ -680,20 +678,20 @@ def check_sensor_alert_limits(alert_check):
     # checking the sensor alert limits. Comment out this line for 24hr
     # monitoring.
 
-    if RPi.GPIO.input(main_pump_relay) == 1:
+    #if RPi.GPIO.input(main_pump_relay) == 1:
 
         # check the limits for each sensor to trigger the alert email
 
-        for reading in alert_readings:
-            for key, value in sensors.items():
-                if reading[0] == value["name"]:
-                    if  ((reading[1] <
-                        all_settings[value["lower_alert_name"]])or
-                        (reading[1] >
-                        all_settings[value["upper_alert_name"]])):
-                        alert_check = True
-                    else:
-                        alert_check = False
+    for reading in alert_readings:
+        for key, value in sensors.items():
+            if reading[0] == value["name"]:
+                if  ((reading[1] <
+                    all_settings[value["lower_alert_name"]])or
+                    (reading[1] >
+                    all_settings[value["upper_alert_name"]])):
+                    alert_check = True
+                else:
+                    alert_check = False
 
     return alert_check
 

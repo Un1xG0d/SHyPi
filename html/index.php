@@ -63,8 +63,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg
-">
+                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
               </span>
             </div>
           </a>
@@ -135,6 +134,11 @@
           <li class="nav-item">
             <a class="nav-link " href="graphs.php">
               <i class="material-icons text-blue">bar_chart</i>Graphs
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="images.php">
+              <i class="material-icons text-blue">camera_alt</i>Images
             </a>
           </li>
           <li class="nav-item">
@@ -295,7 +299,7 @@
               </div>
             </div>
             <div class="table-responsive">
-              <!-- Projects table -->
+              <!-- Table -->
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
