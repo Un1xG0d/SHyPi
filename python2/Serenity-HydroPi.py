@@ -37,6 +37,9 @@ import datetime
 from email.MIMEText import MIMEText
 from email.MIMEMultipart import MIMEMultipart
 import smtplib
+# insert at 1, 0 is the script path (or '' in REPL)
+sys.path.insert(1, '/home/pi/SHyPi/')
+from SHyPi_web_settings import *
 
 # Uncomment sleep if running program at startup with crontab
 
@@ -375,7 +378,7 @@ def send_email(alert_readings):
     msg['To'] = toaddr
     msg['Subject'] = "Serenity-HydroPi Alert"
 
-    body = ("Hi\n\nThe following sensor(s) are indicating that there is a problem that needs your attention\n{}\nPlease check this by logging into the console.\n").format(out_of_limit_sensors.upper())
+    body = ("Hi\n\nThe following sensor(s) are indicating that there is a problem that needs your attention:\n{}\nPlease check this by logging into the console.\n").format(out_of_limit_sensors.upper())
 
     msg.attach(MIMEText(body, 'plain'))
 
@@ -599,9 +602,9 @@ sensors = OrderedDict([("temp_1", {  # DS18B20 Temperature Sensor
                             "accuracy": 1,
                             "test_for_alert": False,
                             "upper_alert_name": "ds18b20_temp_hi",
-                            "upper_alert_value": 50,
+                            "upper_alert_value": airtemphigh_value,
                             "lower_alert_name": "ds18b20_temp_low",
-                            "lower_alert_value": 10}),
+                            "lower_alert_value": airtemplow_value}),
 
                        ("atlas_sensor_2", {  # pH/ORP Atlas Scientific Sensor
                             "sensor_type": "atlas_scientific",
@@ -609,12 +612,12 @@ sensors = OrderedDict([("temp_1", {  # DS18B20 Temperature Sensor
                             "is_connected": True,
                             "is_ref": False,
                             "i2c": 99,
-                            "accuracy": 2,
+                            "accuracy": 1,
                             "test_for_alert": True,
                             "upper_alert_name": "ph_hi",
-                            "upper_alert_value": 6.2,
+                            "upper_alert_value": phhigh_value,
                             "lower_alert_name": "ph_low",
-                            "lower_alert_value": 5.6})])
+                            "lower_alert_value": phlow_value})])
 
 # Define other alert settings
 
@@ -623,7 +626,7 @@ misc_setting = {"offset_percent": 2,  # Stop toggling when close to alert value
                 "email_reset_delay": 172800,  # 60x60x24x2 = 2 Days
                 "read_sensor_delay": 10,  # take a reading every 10 seconds for now
                 "pause_reset_delay": 1800,  # 60x30 = 30 Minutes
-                "to_email": "bigalraff@gmail.com"}
+                "to_email": email_value}
 
 # Define MySQL database login settings
 
