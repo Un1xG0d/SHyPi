@@ -440,7 +440,7 @@ display_welcome()
 
 while True:  # Repeat the code indefinitely
 
-    if loops == 120:
+    if loops == 180:
         loops = 0
 
         read_sensors()
