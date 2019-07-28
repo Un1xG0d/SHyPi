@@ -218,12 +218,19 @@ function drawChart(timeinterval) {
         success: function (jsonData) {
             // Create our data table out of JSON data loaded from server.
             var data =new google.visualization.DataTable(jsonData);
+            console.log(data);
             var options = {
             title: 'pH',
             curveType: 'function'
             };
             var chart = new google.visualization.LineChart(document.getElementById('ph_graph'));
             chart.draw(data, options);
+
+            google.visualization.events.addListener(chart, 'select', function() {
+                var row = chart.getSelection()[0].row;
+                //alert('selected ' + data.getValue(row, 2));
+                window.open(data.getValue(row, 2));
+            });
         }
     });
     $.ajax({
