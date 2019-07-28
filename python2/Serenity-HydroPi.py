@@ -34,16 +34,13 @@ from collections import OrderedDict
 import pygame
 import pygame.camera
 import datetime
-
-pygame.camera.init()
-pygame.camera.list_cameras()
-cam = pygame.camera.Camera("/dev/video0",(720,720))
-cam.start()
-
+from email.MIMEText import MIMEText
+from email.MIMEMultipart import MIMEMultipart
+import smtplib
 
 # Uncomment sleep if running program at startup with crontab
 
-sleep(10)
+#sleep(10)
 
 # Load Raspberry Pi Drivers for 1-Wire Temperature Sensor
 
@@ -198,6 +195,71 @@ def create_sensors_table():
 
     return
 
+def create_settings_table():
+
+    conn, curs = open_database_connection()
+
+    curs.execute("CREATE TABLE IF NOT EXISTS settings "
+                "(pk TINYINT(1) UNSIGNED PRIMARY"
+                " KEY);")
+    try:
+        curs.execute("INSERT IGNORE INTO settings (pk) VALUES(1)")
+    except:
+        pass
+    for key, value in sensors.items():
+        try:
+            curs.execute("ALTER TABLE settings ADD ({} DECIMAL(10,2), "
+            "{} DECIMAL(10,2));".format(value["upper_alert_name"],
+                                        value["lower_alert_name"]))
+            curs.execute("UPDATE IGNORE settings SET {} = {}, {} = {} "
+                    "WHERE pk=1;".format(value["upper_alert_name"],
+                                        value["upper_alert_value"],
+                                        value["lower_alert_name"],
+                                        value["lower_alert_value"]))
+        except:
+            pass
+
+    for key, value in misc_setting.items():
+        if key == "to_email":
+            try:
+                curs.execute("ALTER TABLE settings ADD {} VARCHAR(254);"
+                .format(key))
+                curs.execute("UPDATE IGNORE settings SET {} = '{}' "
+                        "WHERE pk=1;".format(key, value))
+            except:
+                pass
+
+        elif key == "pause_readings":
+            try:
+                curs.execute("ALTER TABLE settings ADD {} BOOLEAN;"
+                .format(key))
+                curs.execute("UPDATE IGNORE settings SET {} = {} "
+                        "WHERE pk=1;".format(key, value))
+            except:
+                pass
+
+        elif key == "offset_percent":
+            try:
+                curs.execute("ALTER TABLE settings ADD {} DECIMAL(10,2);"
+                .format(key))
+                curs.execute("UPDATE IGNORE settings SET {} = {} "
+                        "WHERE pk=1;".format(key, value))
+            except:
+                pass
+
+        else:
+            try:
+                curs.execute("ALTER TABLE settings ADD {} INT(10);"
+                .format(key))
+                curs.execute("UPDATE IGNORE settings SET {} = {} "
+                        "WHERE pk=1;".format(key, value))
+            except:
+                pass
+
+    close_database_connection(conn, curs)
+
+    return
+
 
 def remove_unused_sensors():
 
@@ -270,6 +332,134 @@ def log_sensor_readings(all_curr_readings):
 
     return
 
+def get_settings_table_values():
+
+    # Get the current alert limit settings from the database
+
+    conn = MySQLdb.connect(servername, username, password, dbname,
+                            cursorclass=MySQLdb.cursors.DictCursor)
+    curs = conn.cursor()
+    curs.execute("SET sql_notes = 0; ")
+
+    curs.execute("SELECT * FROM settings WHERE pk = 1")
+    setting_values = curs.fetchone()
+
+    # divide offset percent by 100 to convert to decimal
+    setting_values["offset_percent"] = (setting_values["offset_percent"] / 100)
+
+    close_database_connection(conn, curs)
+
+    return setting_values
+
+
+def send_email(alert_readings):
+    #Generate an email when there is a problem with the water
+
+    # Get the email addresses to send the alert to
+
+    all_settings = get_settings_table_values()
+
+    out_of_limit_sensors = ""
+
+    for k, v in alert_readings:
+        out_of_limit_sensors = (out_of_limit_sensors + "\n" + k + "  -  " +
+                                str(v) + "\n")
+
+    # Build email and send
+
+    fromaddr = "wmedphone@gmail.com"
+    toaddr = all_settings["to_email"]
+    alladdr = toaddr.split(",")
+    msg = MIMEMultipart()
+    msg['From'] = "Serenity Admin"
+    msg['To'] = toaddr
+    msg['Subject'] = "Serenity-HydroPi Alert"
+
+    body = ("Hi\n\nThe following sensor(s) are indicating that there is a problem that needs your attention\n{}\nPlease check this by logging into the console.\n").format(out_of_limit_sensors.upper())
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    try:
+        server.starttls()
+        server.login(fromaddr, "Visanoob2019!")
+        text = msg.as_string()
+        server.sendmail(fromaddr, alladdr, text)
+        server.quit()
+    except:
+        pass
+    return
+
+
+def check_sensor_alert_limits(alert_check):
+
+    # Get all the limit settings for the email alert
+
+    all_settings = get_settings_table_values()
+
+    # The IF statement below checks that the main pump relay is active before
+    # checking the sensor alert limits. Comment out this line for 24hr
+    # monitoring.
+
+    #if RPi.GPIO.input(main_pump_relay) == 1:
+
+    # check the limits for each sensor to trigger the alert email
+
+    for reading in alert_readings:
+        for key, value in sensors.items():
+            if reading[0] == value["name"]:
+                if  ((reading[1] <
+                    all_settings[value["lower_alert_name"]])or
+                    (reading[1] >
+                    all_settings[value["upper_alert_name"]])):
+                    alert_check = True
+                else:
+                    alert_check = False
+
+    return alert_check
+
+
+def reset_email_sent_flag_if_alerts_clear(email_sent):
+
+    check = []
+
+    # Get all the limit settings for the alert
+
+    all_settings = get_settings_table_values()
+
+    for reading in alert_readings:
+        for key, value in sensors.items():
+            if reading[0] == value["name"]:
+
+                if  (reading[1] >
+                    (all_settings[value["lower_alert_name"]] *
+                    (1 + all_settings["offset_percent"])) and
+                    (reading[1] <
+                    (all_settings[value["upper_alert_name"]] *
+                    (1 - all_settings["offset_percent"])))):
+                    check.append("OK")
+
+    # Check if all the sensor readings are now OK, if so reset email_sent flag
+
+    if len(alert_readings) == len(check):
+        email_sent = False
+
+    return (email_sent)
+
+
+def reset_pause_readings():
+
+    # Reset pause flag to restart sensor readings
+
+    conn, curs = open_database_connection()
+
+    curs.execute("UPDATE IGNORE settings SET pause_readings = False "
+                 "WHERE pk=1;")
+
+    close_database_connection(conn, curs)
+
+    return
+
 def capture_webcam_photo():
     #capture photo through webcam using pygame: https://stackoverflow.com/questions/11094481/capturing-a-single-image-from-my-webcam-in-java-or-python
     
@@ -303,9 +493,8 @@ def display_welcome():
 
 def read_sensors():
 
-    capture_webcam_photo()
-
     all_curr_readings = []
+    alert_readings = []
     ref_temp = 25
 
     # Get the readings from any 1-Wire temperature sensors
@@ -321,6 +510,8 @@ def read_sensors():
                     
                 all_curr_readings.append([value["name"], sensor_reading])
 
+                if value["test_for_alert"] is True:
+                    alert_readings.append([value["name"], sensor_reading])
                 if value["is_ref"] is True:
                     ref_temp = sensor_reading
 
@@ -335,7 +526,8 @@ def read_sensors():
                     sensor_reading = 50
                     
                 all_curr_readings.append([value["name"], sensor_reading])
-
+                if value["test_for_alert"] is True:
+                    alert_readings.append([value["name"], sensor_reading])
                 if value["is_ref"] is True:
                     ref_temp = sensor_reading
                     
@@ -352,6 +544,9 @@ def read_sensors():
                     sensor_reading = 10000
                     
                 all_curr_readings.append([value["name"], sensor_reading])
+                
+                if value["test_for_alert"] is True:
+                    alert_readings.append([value["name"], sensor_reading])
 
     # Get the readings from any other Atlas Scientific sensors
 
@@ -369,11 +564,15 @@ def read_sensors():
                         sensor_reading = 1000
                         
                 all_curr_readings.append([value["name"], sensor_reading])
-                print all_curr_readings
+                if value["test_for_alert"] is True:
+                    alert_readings.append([value["name"], sensor_reading])
 
+    print all_curr_readings
     log_sensor_readings(all_curr_readings)
 
-    return
+    # Alert_Readings will return just the readings from sensors we want tested for the email alert
+
+    return alert_readings
 
 
 # Configuration Settings
@@ -397,7 +596,12 @@ sensors = OrderedDict([("temp_1", {  # DS18B20 Temperature Sensor
                             "is_ref": False,
                             "ds18b20_file":
                             "/sys/bus/w1/devices/28-0517c20738ff/w1_slave",
-                            "accuracy": 1}),
+                            "accuracy": 1,
+                            "test_for_alert": False,
+                            "upper_alert_name": "ds18b20_temp_hi",
+                            "upper_alert_value": 50,
+                            "lower_alert_name": "ds18b20_temp_low",
+                            "lower_alert_value": 10}),
 
                        ("atlas_sensor_2", {  # pH/ORP Atlas Scientific Sensor
                             "sensor_type": "atlas_scientific",
@@ -405,7 +609,21 @@ sensors = OrderedDict([("temp_1", {  # DS18B20 Temperature Sensor
                             "is_connected": True,
                             "is_ref": False,
                             "i2c": 99,
-                            "accuracy": 2})])
+                            "accuracy": 2,
+                            "test_for_alert": True,
+                            "upper_alert_name": "ph_hi",
+                            "upper_alert_value": 6.2,
+                            "lower_alert_name": "ph_low",
+                            "lower_alert_value": 5.6})])
+
+# Define other alert settings
+
+misc_setting = {"offset_percent": 2,  # Stop toggling when close to alert value
+                "pause_readings": False,
+                "email_reset_delay": 172800,  # 60x60x24x2 = 2 Days
+                "read_sensor_delay": 10,  # take a reading every 10 seconds for now
+                "pause_reset_delay": 1800,  # 60x30 = 30 Minutes
+                "to_email": "bigalraff@gmail.com"}
 
 # Define MySQL database login settings
 
@@ -416,6 +634,20 @@ dbname = "hydropi"
 
 loops = 0  # Set starting loops count for timing relay and sensor readings
 
+# Define other settings
+
+# number of seconds between sensor readings
+time_between_readings = misc_setting["read_sensor_delay"]
+alert_check = False
+email_sent = False
+email_sent_reset = 0
+pause_loops = 0
+
+# camera settings
+pygame.camera.init()
+pygame.camera.list_cameras()
+cam = pygame.camera.Camera("/dev/video0",(720,720))
+cam.start()
 
 #################
 #               #
@@ -423,6 +655,9 @@ loops = 0  # Set starting loops count for timing relay and sensor readings
 #               #
 #################
 
+# Display welcome message
+
+display_welcome()
 
 # Sanity Checks
 
@@ -432,18 +667,52 @@ check_for_only_one_reference_temperature()
 
 create_database()
 create_sensors_table()
+create_settings_table()
 remove_unused_sensors()
 
-# Display welcome message
-
-display_welcome()
-
 while True:  # Repeat the code indefinitely
+    # Check if sensor readings have been paused, if not then read and store
+    # sensor values and check against alert values, send an email if required
 
-    if loops == 180:
+    if loops == time_between_readings:
         loops = 0
 
-        read_sensors()
+        # Read delay values from settings table
+
+        delays = get_settings_table_values()
+        time_between_readings = delays["read_sensor_delay"]
+        email_reset_loop = (delays["email_reset_delay"] //
+                                    time_between_readings)
+        pause_reset_loop = (delays["pause_reset_delay"] //
+                                    time_between_readings)
+
+        if delays["pause_readings"] == 0:
+            alert_readings = read_sensors()
+
+            if alert_check is True and email_sent is True:
+                email_sent = reset_email_sent_flag_if_alerts_clear(email_sent)
+                if email_sent is False:
+                    alert_check is False
+                    email_sent_reset = 0
+
+            elif alert_check is False:
+                alert_check = check_sensor_alert_limits(alert_check)
+                if alert_check is True:
+                    email_sent = send_email(alert_readings)
+                    email_sent = True
+                    email_sent_reset = 0
+
+        elif delays["pause_readings"] == 1:
+            pause_loops += 1
+            if pause_loops == pause_reset_loop:
+                reset_pause_readings()
+                pause_loops = 0
+
+        if email_sent is True:
+            email_sent_reset += 1
+            if email_sent_reset == email_reset_loop:
+                alert_check = False
+                email_sent_reset = 0
 
     loops += 1
     sleep(1)
