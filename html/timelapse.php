@@ -226,72 +226,61 @@
     </div>
     <div class="container-fluid mt--7">
       <div class="row mt-5">
-        <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="col-xl-4 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Image Gallery</h3>
-                </div>
-                <div class="col text-right">
-                  <a href="timelapse.php" class="btn btn-sm btn-primary">Make Timelapse</a>
+                  <h3 class="mb-0">Timelapse Creator</h3>
                 </div>
               </div>
             </div>
-            <div class='gallerycontainer'>
-             <div class="gallery">
-             
-              <?php 
-              // Image extensions
-              $image_extensions = array("png","jpg","jpeg","gif");
+            <form role="form" action="processtimelapse.php" method="post">
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">date_range</i>
+                    </span>
+                  </div>
+                  <input class="form-control" name="filename" value="timelapse" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">date_range</i>
+                    </span>
+                  </div>
+                  <input class="form-control" name="year" placeholder="2019" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">date_range</i>
+                    </span>
+                  </div>
+                  <input class="form-control" name="month" placeholder="04" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">date_range</i>
+                    </span>
+                  </div>
+                  <input class="form-control" name="day" placeholder="20" type="text">
+                </div>
+              </div>
 
-              // Target directory
-              $dir = 'camimages/';
-              if (is_dir($dir)){
-             
-               if ($dh = opendir($dir)){
-                $count = 1;
-
-                // Read files
-                while (($file = readdir($dh)) !== false){
-
-                 if($file != '' && $file != '.' && $file != '..'){
-
-                  // Image path
-                  $image_name = (string) $file;
-                  $image_path = "camimages/".$file;
-             
-                  $image_ext = pathinfo($image_path, PATHINFO_EXTENSION);
-
-                  // Check its not folder and it is image file
-                  if(!is_dir($image_path) && 
-                     in_array($image_ext,$image_extensions)){
-               ?>
-
-                   <!-- Image -->
-                   <a href="<?php echo $image_path; ?>">
-                    <img src="<?php echo $image_path; ?>" alt="" title="<?php echo $image_name; ?>"/>
-                   </a>
-                   <!-- --- -->
-                   <?php
-
-                   // Break
-                   if( $count%4 == 0){
-                   ?>
-                     <div class="clear"></div>
-                   <?php 
-                   }
-                   $count++;
-                  }
-                 }
-             
-                }
-                closedir($dh);
-               }
-              }
-             ?>
-             </div>
-            </div>
+              <div class="text-center">
+                <button type="button submit" class="btn btn-primary mt-4">DONE!</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

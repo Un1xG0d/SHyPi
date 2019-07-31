@@ -23,8 +23,6 @@
   <title>
     Serenity Monitor
   </title>
-  <!-- JS Files -->
-  <script type="text/javascript" src="./assets/js/simple-lightbox.js"></script>
   <!-- Favicon -->
   <link href="./assets/img/brand/favicon.png" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -35,9 +33,6 @@
   <link href="./assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="./assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
-  <link href="./css/images.css" rel="stylesheet" />
-  <link href="./css/simple-lightbox.css" rel="stylesheet" />
-  <link href='simplelightbox-master/dist/simplelightbox.min.css' rel='stylesheet' type='text/css'>
 </head>
 
 <body class="">
@@ -135,8 +130,8 @@
               <i class="material-icons text-blue">bar_chart</i>Graphs
             </a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link active" href="images.php">
+          <li class="nav-item">
+            <a class="nav-link " href="images.php">
               <i class="material-icons text-blue">camera_alt</i>Images
             </a>
           </li>
@@ -150,8 +145,8 @@
               <i class="material-icons text-blue">format_list_numbered_rtl</i>Dosage
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link " href="settings.php">
+          <li class="nav-item active">
+            <a class="nav-link active " href="settings.php">
               <i class="material-icons text-blue">settings</i>Settings
             </a>
           </li>
@@ -165,7 +160,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="index.php">Dashboard</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="settings.php">Settings</a>
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
@@ -222,80 +217,45 @@
     </nav>
     <!-- End Navbar -->
     <!-- Header -->
-    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-    </div>
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
     <div class="container-fluid mt--7">
       <div class="row mt-5">
-        <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="col-xl-8 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Image Gallery</h3>
-                </div>
-                <div class="col text-right">
-                  <a href="timelapse.php" class="btn btn-sm btn-primary">Make Timelapse</a>
+                  <h3 class="mb-0">Hardware Tools</h3>
                 </div>
               </div>
             </div>
-            <div class='gallerycontainer'>
-             <div class="gallery">
-             
-              <?php 
-              // Image extensions
-              $image_extensions = array("png","jpg","jpeg","gif");
-
-              // Target directory
-              $dir = 'camimages/';
-              if (is_dir($dir)){
-             
-               if ($dh = opendir($dir)){
-                $count = 1;
-
-                // Read files
-                while (($file = readdir($dh)) !== false){
-
-                 if($file != '' && $file != '.' && $file != '..'){
-
-                  // Image path
-                  $image_name = (string) $file;
-                  $image_path = "camimages/".$file;
-             
-                  $image_ext = pathinfo($image_path, PATHINFO_EXTENSION);
-
-                  // Check its not folder and it is image file
-                  if(!is_dir($image_path) && 
-                     in_array($image_ext,$image_extensions)){
-               ?>
-
-                   <!-- Image -->
-                   <a href="<?php echo $image_path; ?>">
-                    <img src="<?php echo $image_path; ?>" alt="" title="<?php echo $image_name; ?>"/>
-                   </a>
-                   <!-- --- -->
-                   <?php
-
-                   // Break
-                   if( $count%4 == 0){
-                   ?>
-                     <div class="clear"></div>
-                   <?php 
-                   }
-                   $count++;
-                  }
-                 }
-             
-                }
-                closedir($dh);
-               }
-              }
-             ?>
-             </div>
+            <button type="button" class="btn btn-outline-warning btn-block" onclick="Restart()">Restart</button>
+            <button type="button" class="btn btn-outline-danger btn-block" onclick="Shutdown()">Shutdown</button>
+          </div>
+        </div>
+        <div class="col-xl-4 mb-5 mb-xl-0">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">Delete Readings from Database</h3>
+                </div>
+              </div>
             </div>
+            <button type="button" class="btn btn-outline-danger btn-block" onclick="Delete_MySQL(0)">Delete All</button>
+            <button type="button" class="btn btn-outline-info btn-block" onclick="Delete_MySQL(30)">Over 1 Month</button>
+            <button type="button" class="btn btn-outline-default btn-block" onclick="Delete_MySQL(90)">Over 3 Months</button>
+            <button type="button" class="btn btn-outline-primary btn-block" onclick="Delete_MySQL(365)">Over 12 Months</button>
           </div>
         </div>
       </div>
-
+      <script>
+          <?php
+              // Add web names for each setting values and read all the current settings values
+              include "php/settings_webpage_names.php";
+              include "php/initial_settings_data.php";
+          ?>
+      </script>
       <!-- Footer -->
       <footer class="footer">
         <div class="row align-items-center justify-content-xl-between">
@@ -311,19 +271,11 @@
   <!--   Core   -->
   <script src="./assets/js/plugins/jquery/dist/jquery.min.js"></script>
   <script src="./assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Script -->
-            <script type='text/javascript'>
-            $(document).ready(function(){
-
-             // Intialize gallery
-             var gallery = $('.gallery a').simpleLightbox();
-
-            });
-            </script>
-
   <!--   Argon JS   -->
   <script src="./assets/js/argon-dashboard.min.js?v=1.1.0"></script>
   
 </body>
-
+<!-- Custom JavaScript
+================================================== -->
+<script src="js/hydropi.js"></script>
 </html>

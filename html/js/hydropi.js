@@ -6,7 +6,7 @@ function Delete_MySQL(timeinterval) {
                 type: "POST",
                 data: {newtime: timeinterval},
             });
-            window.alert("All Data Older than "+timeinterval+" Days has been cleared from the Sensors Log");
+            window.alert("All data older than "+timeinterval+" days has been cleared from the sensors log.");
         }
         else {
             window.alert("Delete Aborted.");
@@ -19,7 +19,7 @@ function Delete_MySQL(timeinterval) {
             type: "POST",
             data: {newtime: timeinterval},
         });
-        window.alert("All Data has been cleared from the Sensors Log");
+        window.alert("All data has been cleared from the sensors log.");
         }
         else {
             window.alert("Delete Aborted.");
@@ -30,7 +30,7 @@ function Delete_MySQL(timeinterval) {
 function Restart() {
 
     if (confirm("Are you sure you want to restart?") == true){
-        window.alert("The HydroPi is Restarting");
+        window.alert("Your SHyPi is Restarting");
         $.ajax({
             url: "/php/restart.php",
             type: "POST",
@@ -42,8 +42,8 @@ function Restart() {
 }
 function Shutdown() {
 
-    if (confirm("Are you sure you want to Shutdown?") == true){
-        window.alert("The HydroPi is Shutting Down. It is now safe to turn off the Power");
+    if (confirm("Are you sure you want to shutdown?") == true){
+        window.alert("Your SHyPi is shutting down. It is now safe to turn off the power");
         $.ajax({
             url: "/php/shutdown.php",
             type: "POST",
