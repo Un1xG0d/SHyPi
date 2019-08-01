@@ -37,12 +37,11 @@ import datetime
 from email.MIMEText import MIMEText
 from email.MIMEMultipart import MIMEMultipart
 import smtplib
-# insert at 1, 0 is the script path (or '' in REPL)
-sys.path.insert(1, '/home/pi/SHyPi/')
-from SHyPi_web_settings import *
+sys.path.insert(1, '/home/pi/SHyPi/') # insert at 1, 0 is the script path (or '' in REPL)
+from SHyPi_web_settings import * # import user-set variables (setupone.php) 
+import socket
 
 # Uncomment sleep if running program at startup with crontab
-
 #sleep(10)
 
 # Load Raspberry Pi Drivers for 1-Wire Temperature Sensor
@@ -280,6 +279,17 @@ def remove_unused_sensors():
 
     return
 
+def get_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # doesn't even have to be reachable
+        s.connect(('10.255.255.255', 1))
+        IP = s.getsockname()[0]
+    except:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+    return IP
 
 def read_1_wire_temp_raw(temp_num):
 
@@ -488,13 +498,18 @@ def display_welcome():
     print "/_/ /_/\__, /\__,_/_/   \____/_/   /_/   " 
     print "      /____/                             " 
     print "\n"
-    print "Serenity HydroPi starting..."
+    print "SHyPi is starting..."
     sleep(3)
     print "All services started!"
+    print "\n"
+    print "IP address:\n"
+    print get_ip()
     print "\n"
     print "Output:\n"
 
 def read_sensors():
+
+    capture_webcam_photo()
 
     all_curr_readings = []
     alert_readings = []
@@ -623,9 +638,9 @@ sensors = OrderedDict([("temp_1", {  # DS18B20 Temperature Sensor
 
 misc_setting = {"offset_percent": 2,  # Stop toggling when close to alert value
                 "pause_readings": False,
-                "email_reset_delay": 172800,  # 60x60x24x2 = 2 Days
-                "read_sensor_delay": 10,  # take a reading every 10 seconds for now
-                "pause_reset_delay": 1800,  # 60x30 = 30 Minutes
+                "email_reset_delay": 120,  # 60x2 = 2 minutes for now
+                "read_sensor_delay": 300,  # take a reading every 5 minutes for now
+                "pause_reset_delay": 1200,  # 60x20 = 20 minutes for now
                 "to_email": email_value}
 
 # Define MySQL database login settings
