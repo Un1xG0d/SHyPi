@@ -13,6 +13,14 @@
             $result = mysqli_query($conn, $sql);
             mysqli_free_result($result);
         }
+        else if ($title == "ds18b20_temp_hi" || $title == "ds18b20_temp_low" || $title == "atlas_temp_hi" || $title == "atlas_temp_low"){
+            // convert F to C when updating settings for any temp sensors
+            $f = $setting;
+            $c = ($f - 32) / 1.8;
+            $sql = "UPDATE settings SET ".$title." = ".$c." WHERE pk = 1";
+            $result = mysqli_query($conn, $sql);
+            mysqli_free_result($result);
+        }
         else if ($title != "to_email"){
             // Update setting value if it isn't to_email
             $sql = "UPDATE settings SET ".$title." = ".$setting." WHERE pk = 1";

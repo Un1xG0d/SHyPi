@@ -7,7 +7,7 @@
           echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Air Temp\";\n";
         }
         else if ($title == "atlas_temp") {
-          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Pool Temp\";\n";
+          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Water Temp\";\n";
         }
         else if ($title == "ph") {
           echo  "document.getElementById(\"".$title."_name\").innerHTML = \"pH\";\n";

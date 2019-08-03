@@ -1,13 +1,17 @@
 <?php 
 	$name = htmlspecialchars($_POST['name']);
 	$email = htmlspecialchars($_POST['email']);
-	$airtemplow = htmlspecialchars($_POST['airtemplow']);
-	$airtemphigh = htmlspecialchars($_POST['airtemphigh']);
 	$phlow = htmlspecialchars($_POST['phlow']);
 	$phhigh = htmlspecialchars($_POST['phhigh']);
 
+  //convert temperature values from F to C before storing in MySQL
+  $atfl = htmlspecialchars($_POST['airtemplow']);
+  $atcl = ($atfl - 32) / 1.8;
+  $atfh = htmlspecialchars($_POST['airtemphigh']);
+  $atch = ($atfh - 32) / 1.8;
+
 	$file = fopen("/home/pi/SHyPi/SHyPi_web_settings.py", "w") or die("can't open file");
-	$data = "user_name_value = '".$name."'\nemail_value = '".$email."'\nairtemplow_value = ".$airtemplow."\nairtemphigh_value = ".$airtemphigh."\nphlow_value = ".$phlow."\nphhigh_value = ".$phhigh;
+	$data = "user_name_value = '".$name."'\nemail_value = '".$email."'\nairtemplow_value = ".$atcl."\nairtemphigh_value = ".$atch."\nphlow_value = ".$phlow."\nphhigh_value = ".$phhigh;
 	fwrite($file, $data);
     fclose($file);
 ?>
@@ -78,19 +82,15 @@
             <div class=" dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="profile.php" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
             </a>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="settings.php" class="dropdown-item">
               <i class="ni ni-settings-gear-65"></i>
               <span>Settings</span>
             </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="support.php" class="dropdown-item">
               <i class="ni ni-support-16"></i>
               <span>Support</span>
             </a>
@@ -146,6 +146,11 @@
           <li class="nav-item">
             <a class="nav-link " href="images.php">
               <i class="material-icons text-blue">camera_alt</i>Images
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="notes.php">
+              <i class="material-icons text-blue">note_add</i>Notes
             </a>
           </li>
           <li class="nav-item">

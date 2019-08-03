@@ -65,19 +65,15 @@
             <div class=" dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="profile.php" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
             </a>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="settings.php" class="dropdown-item">
               <i class="ni ni-settings-gear-65"></i>
               <span>Settings</span>
             </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="support.php" class="dropdown-item">
               <i class="ni ni-support-16"></i>
               <span>Support</span>
             </a>
@@ -133,6 +129,11 @@
           <li class="nav-item">
             <a class="nav-link " href="images.php">
               <i class="material-icons text-blue">camera_alt</i>Images
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="notes.php">
+              <i class="material-icons text-blue">note_add</i>Notes
             </a>
           </li>
           <li class="nav-item">

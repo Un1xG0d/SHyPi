@@ -32,11 +32,26 @@
         //$date_link = "<a href='camimages/".$date_sanitized.".jpg'>".$short_date."</a>";
         $date_link = "camimages/".$date_sanitized.".jpg";
 
-        //Value
-        $temp[] = array('v' => (string) $short_date);
-        $temp[] = array('v' => (float) round($row[$sensor_name],2));
-        $temp[] = array('v' => (string) $date_link);
-        $rows[] = array('c' => $temp);
+        $c = $row[$sensor_name];
+        $f = ($c * 9/5) + 32;
+
+        if ($sensor_name == "ds18b20_temp") {
+            //Value
+            $c = $row[$sensor_name];
+            $f = ($c * 9/5) + 32;
+            $temp[] = array('v' => (string) $short_date);
+            $temp[] = array('v' => (float) round($f,2));
+            $temp[] = array('v' => (string) $date_link);
+            $rows[] = array('c' => $temp);
+        } else {
+            //Value
+            $temp[] = array('v' => (string) $short_date);
+            $temp[] = array('v' => (float) round($row[$sensor_name],2));
+            $temp[] = array('v' => (string) $date_link);
+            $rows[] = array('c' => $temp);
+        }
+
+        
     }
     $result->free();
     $table['rows'] = $rows;

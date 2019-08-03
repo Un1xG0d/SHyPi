@@ -9,7 +9,9 @@
 
     foreach ($colnames as $title) {
         if ($title == "ds18b20_temp") {
-          echo "document.getElementById(\"".$title."_curr\").innerHTML = \"".round($row[$title],1)."<sup>&degC</sup>\";\n";
+            $c = $row[$title];
+            $f = ($c * 9/5) + 32;
+            echo "document.getElementById(\"".$title."_curr\").innerHTML = \"".round($f,1)."<sup>&degF</sup>\";\n";
         }
         else if ($title == "atlas_temp") {
           echo "document.getElementById(\"".$title."_curr\").innerHTML = \"".round($row[$title],1)."<sup>&degC</sup>\";\n";

@@ -65,19 +65,15 @@
             <div class=" dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="profile.php" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
             </a>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="settings.php" class="dropdown-item">
               <i class="ni ni-settings-gear-65"></i>
               <span>Settings</span>
             </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="support.php" class="dropdown-item">
               <i class="ni ni-support-16"></i>
               <span>Support</span>
             </a>
@@ -133,6 +129,11 @@
           <li class="nav-item">
             <a class="nav-link " href="images.php">
               <i class="material-icons text-blue">camera_alt</i>Images
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="notes.php">
+              <i class="material-icons text-blue">note_add</i>Notes
             </a>
           </li>
           <li class="nav-item">
@@ -243,19 +244,50 @@
               </div>
             </div>
             <button type="button" class="btn btn-outline-danger btn-block" onclick="Delete_MySQL(0)">Delete All</button>
-            <button type="button" class="btn btn-outline-info btn-block" onclick="Delete_MySQL(30)">Over 1 Month</button>
-            <button type="button" class="btn btn-outline-default btn-block" onclick="Delete_MySQL(90)">Over 3 Months</button>
-            <button type="button" class="btn btn-outline-primary btn-block" onclick="Delete_MySQL(365)">Over 12 Months</button>
+            <button type="button" class="btn btn-outline-info btn-block" onclick="Delete_MySQL(2)">Over 2 Days</button>
+            <button type="button" class="btn btn-outline-default btn-block" onclick="Delete_MySQL(7)">Over 1 Week</button>
+            <button type="button" class="btn btn-outline-primary btn-block" onclick="Delete_MySQL(30)">Over 1 Month</button>
           </div>
         </div>
       </div>
-      <script>
-          <?php
-              // Add web names for each setting values and read all the current settings values
-              include "php/settings_webpage_names.php";
-              include "php/initial_settings_data.php";
-          ?>
-      </script>
+      <div class="row mt-5">
+        <div class="col-xl-5 mb-5 mb-xl-0">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">Timelapse Creator</h3>
+                </div>
+              </div>
+            </div>
+                <form class="form" method="POST" action="/php/update_settings.php">
+                <fieldset>
+                    <?php
+                    // Get the names of all the settings in the database and add an input for each to the form
+                    include "php/settings_col_names.php";
+                    $count = 0;
+                    foreach ($colnames as $title) {
+                        echo "<div>\n";
+                        echo "<label for=\"text-input\" id=\"" .$title. "_name\"></label>\n";
+                        echo "</div>\n";
+                        echo "<input name=\"" .$title. "\" class='form-control' id=\"" .$title. "\" autocomplete=\"off\">\n";
+                    }
+                    ?>
+                    <br>
+                    <button type="button submit" name="singlebutton" id="singlebutton" class="btn btn-primary mt-4">UPDATE SETTINGS</button>
+                    <br>
+                    </fieldset>
+                </form>
+                <script>
+                  <?php
+                      // Add web names for each setting values and read all the current settings values
+                      include "php/settings_webpage_names.php";
+                      include "php/initial_settings_data.php";
+                  ?>
+              </script>
+            </div>
+        </div>
+    </div>
       <!-- Footer -->
       <footer class="footer">
         <div class="row align-items-center justify-content-xl-between">

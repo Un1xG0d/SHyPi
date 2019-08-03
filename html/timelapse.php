@@ -70,19 +70,15 @@
             <div class=" dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="profile.php" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
             </a>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="settings.php" class="dropdown-item">
               <i class="ni ni-settings-gear-65"></i>
               <span>Settings</span>
             </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="support.php" class="dropdown-item">
               <i class="ni ni-support-16"></i>
               <span>Support</span>
             </a>
@@ -141,6 +137,11 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link " href="notes.php">
+              <i class="material-icons text-blue">note_add</i>Notes
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link " href="timers.php">
               <i class="material-icons text-blue">timer</i>Timers
             </a>
@@ -165,7 +166,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="index.php">Dashboard</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="timelapse.php">Timelapse Creator</a>
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
@@ -191,31 +192,27 @@
               </div>
             </a>
             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-              <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Welcome!</h6>
-              </div>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-single-02"></i>
-                <span>My profile</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Settings</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-calendar-grid-58"></i>
-                <span>Activity</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-support-16"></i>
-                <span>Support</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-user-run"></i>
-                <span>Logout</span>
-              </a>
+            <div class=" dropdown-header noti-title">
+              <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
+            <a href="profile.php" class="dropdown-item">
+              <i class="ni ni-single-02"></i>
+              <span>My profile</span>
+            </a>
+            <a href="settings.php" class="dropdown-item">
+              <i class="ni ni-settings-gear-65"></i>
+              <span>Settings</span>
+            </a>
+            <a href="support.php" class="dropdown-item">
+              <i class="ni ni-support-16"></i>
+              <span>Support</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#!" class="dropdown-item">
+              <i class="ni ni-user-run"></i>
+              <span>Logout</span>
+            </a>
+          </div>
           </li>
         </ul>
       </div>
@@ -226,7 +223,7 @@
     </div>
     <div class="container-fluid mt--7">
       <div class="row mt-5">
-        <div class="col-xl-4 mb-5 mb-xl-0">
+        <div class="col-xl-5 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
@@ -240,7 +237,7 @@
                 <div class="input-group input-group-alternative mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
-                      <i class="material-icons">date_range</i>
+                      <i class="material-icons">create_new_folder</i>
                     </span>
                   </div>
                   <input class="form-control" name="filename" value="timelapse" type="text">
@@ -280,6 +277,7 @@
               <div class="text-center">
                 <button type="button submit" class="btn btn-primary mt-4">DONE!</button>
               </div>
+              <br>
             </form>
           </div>
         </div>
@@ -300,16 +298,6 @@
   <!--   Core   -->
   <script src="./assets/js/plugins/jquery/dist/jquery.min.js"></script>
   <script src="./assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Script -->
-            <script type='text/javascript'>
-            $(document).ready(function(){
-
-             // Intialize gallery
-             var gallery = $('.gallery a').simpleLightbox();
-
-            });
-            </script>
-
   <!--   Argon JS   -->
   <script src="./assets/js/argon-dashboard.min.js?v=1.1.0"></script>
   

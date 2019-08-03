@@ -151,7 +151,7 @@
                   <small>Use these forms to set up trigger thresholds and alerts.</small>
                 </div>
                 <div class="text-left text-muted mb-4">
-                  <small><b>Air Temp &degC</b></small>
+                  <small><b>Air Temp &degF</b></small>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative mb-3">
@@ -160,13 +160,13 @@
                         <i class="material-icons">keyboard_arrow_down</i>
                       </span>
                     </div>
-                    <input class="form-control" name="airtemplow" placeholder="19" type="text">
+                    <input class="form-control" name="airtemplow" placeholder="60" type="text">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
                         <i class="material-icons">keyboard_arrow_up</i>
                       </span>
                     </div>
-                    <input class="form-control" name="airtemphigh" placeholder="27" type="text">
+                    <input class="form-control" name="airtemphigh" placeholder="70" type="text">
                   </div>
                 </div>
                 <div class="text-left text-muted mb-4">

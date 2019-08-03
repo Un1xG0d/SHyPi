@@ -8,8 +8,8 @@
 * Copyright 2019 Creative Tim (https://www.creative-tim.com)
 * Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
 
-* Coded originally by Creative Tim
-* Adapted to Serenity by Alan Raff
+* Coded by Creative Tim
+
 =========================================================
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
@@ -116,8 +116,8 @@
         </form>
         <!-- Navigation -->
         <ul class="navbar-nav">
-          <li class="nav-item active">
-          <a class=" nav-link active " href="index.php">
+          <li class="nav-item">
+          <a class=" nav-link " href="index.php">
             <i class="material-icons text-blue">dashboard</i>Dashboard
             </a>
           </li>
@@ -127,12 +127,12 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="images.php">
+            <a class="nav-link" href="images.php">
               <i class="material-icons text-blue">camera_alt</i>Images
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link " href="notes.php">
+          <li class="nav-item active">
+            <a class="nav-link active" href="notes.php">
               <i class="material-icons text-blue">note_add</i>Notes
             </a>
           </li>
@@ -187,31 +187,27 @@
               </div>
             </a>
             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-              <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Welcome!</h6>
-              </div>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-single-02"></i>
-                <span>My profile</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Settings</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-calendar-grid-58"></i>
-                <span>Activity</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-support-16"></i>
-                <span>Support</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-user-run"></i>
-                <span>Logout</span>
-              </a>
+            <div class=" dropdown-header noti-title">
+              <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
+            <a href="profile.php" class="dropdown-item">
+              <i class="ni ni-single-02"></i>
+              <span>My profile</span>
+            </a>
+            <a href="settings.php" class="dropdown-item">
+              <i class="ni ni-settings-gear-65"></i>
+              <span>Settings</span>
+            </a>
+            <a href="support.php" class="dropdown-item">
+              <i class="ni ni-support-16"></i>
+              <span>Support</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#!" class="dropdown-item">
+              <i class="ni ni-user-run"></i>
+              <span>Logout</span>
+            </a>
+          </div>
           </li>
         </ul>
       </div>
@@ -219,74 +215,15 @@
     <!-- End Navbar -->
     <!-- Header -->
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-      <div class="container-fluid">
-        <div class="header-body">
-          <!-- Card stats -->
-          <div class="row">
-            <div class="col-xl-3 col-lg-6">
-              <div class="card card-stats mb-4 mb-xl-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Current Time</h5>
-                      <span class="h5 font-weight-bold mb-0"><?php echo date('Y/m/d H:i:s'); ?></span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-success text-white rounded-circle shadow">
-                        <i class="material-icons">calendar_today</i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6">
-              <div class="card card-stats mb-4 mb-xl-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Sensors</h5>
-                      <span class="h2 font-weight-bold mb-0">2</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-success text-white rounded-circle shadow">
-                        <i class="material-icons">radio_button_checked</i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6">
-              <div class="card card-stats mb-4 mb-xl-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Alarms</h5>
-                      <span class="h2 font-weight-bold mb-0">0</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-success text-white rounded-circle shadow">
-                        <i class="material-icons">notifications</i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
     </div>
     <div class="container-fluid mt--7">
       <div class="row mt-5">
-        <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="col-xl-6 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Sensors</h3>
+                  <h3 class="mb-0">Notes</h3>
                 </div>
               </div>
             </div>
@@ -295,27 +232,22 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Current</th>
-                    <th scope="col">Average</th>
+                    <th scope="col">Timestamp</th>
+                    <th scope="col">Notes</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                    // Read the sensors that are connected from the database and create a row for each
-                    include "php/sensor_col_names.php";
-                    foreach ($colnames as $title) {
+                    // Read the notes from MySQL
+                    include "php/get_notes.php";
+                    for ($i = 0; $i <= count($arr); $i++) {
                       echo "<tr>";
                       echo "<th scope=\"row\">";
-                      echo "<h5 id=\"" .$title. "_name\"></h5>";
+                      echo "<h5>".$arr[$i][0]."</h5>";
                       echo "</th>";
                       echo "<td>";
-                      echo "<h5 id=\"" .$title. "_curr\"></h5>";
+                      echo "<h5>".$arr[$i][1]."</h5>";
                       echo "</td>";
-                      echo "<td>";
-                      echo "<h5 id=\"" .$title. "_avg\"></h5>";
-                      echo "</td>";
-                      echo "</tr>";
                     }
                   ?>
                 </tbody>
@@ -323,15 +255,40 @@
             </div>
           </div>
         </div>
+        <div class="col-xl-6 mb-5 mb-xl-0">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">Add a Note</h3>
+                </div>
+              </div>
+            </div>
+            <form role="form" action="php/add_note.php" method="post">
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">date_range</i>
+                    </span>
+                  </div>
+                  <input class="form-control" name="dateandtime" value="<?php echo date('Y/m/d H:i:s'); ?>" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                    <textarea class="form-control form-control-alternative" name="notes" rows="4" placeholder="Write your notes here ..."></textarea>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="button submit" class="btn btn-primary mt-4">ADD!</button>
+              </div>
+              <br>
+            </form>
+          </div>
+        </div>
       </div>
-      <script>
-          <?php
-              // populate the sensors panel with updated sensor names and values
-              include "php/sensor_webpage_names.php";
-              include "php/get_current_sensor_values.php";
-              include "php/sensor_check.php";
-          ?>
-      </script>
+
       <!-- Footer -->
       <footer class="footer">
         <div class="row align-items-center justify-content-xl-between">
