@@ -613,7 +613,7 @@ sensors = OrderedDict([("temp_1", {  # DS18B20 Temperature Sensor
                             "is_connected": True,
                             "is_ref": False,
                             "ds18b20_file":
-                            "/sys/bus/w1/devices/28-0517c20738ff/w1_slave",
+                            "/sys/bus/w1/devices/28-0417c1d3e6ff/w1_slave",
                             "accuracy": 1,
                             "test_for_alert": False,
                             "upper_alert_name": "ds18b20_temp_hi",
@@ -638,9 +638,9 @@ sensors = OrderedDict([("temp_1", {  # DS18B20 Temperature Sensor
 
 misc_setting = {"offset_percent": 2,  # Stop toggling when close to alert value
                 "pause_readings": False,
-                "email_reset_delay": 120,  # 60x2 = 2 minutes for now
-                "read_sensor_delay": 300,  # take a reading every 5 minutes for now
-                "pause_reset_delay": 1200,  # 60x20 = 20 minutes for now
+                "email_reset_delay": 300,  # wait 5 minutes before sending another email
+                "read_sensor_delay": 30,  # take a reading every 30 seconds for now
+                "pause_reset_delay": 300,  # pause for 5 minutes
                 "to_email": email_value}
 
 # Define MySQL database login settings
