@@ -4,16 +4,16 @@
     // Get all the settings values in the database and present to the webpage with relevant names
     foreach ($colnames as $title) {
         if ($title == "ds18b20_temp_hi") {
-          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Air Temp High\";\n";
+          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Air Temp High <sup>&degC</sup>\";\n";
         }
         else if ($title == "ds18b20_temp_low") {
-          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Air Temp Low\";\n";
+          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Air Temp Low <sup>&degC</sup>\";\n";
         }
         else if ($title == "atlas_temp_hi") {
-          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Pool Temp High\";\n";
+          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Pool Temp High <sup>&degC</sup>\";\n";
         }
         else if ($title == "atlas_temp_low") {
-          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Pool Temp Low\";\n";
+          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Pool Temp Low <sup>&degC</sup>\";\n";
         }
         else if ($title == "ph_hi") {
           echo  "document.getElementById(\"".$title."_name\").innerHTML = \"pH High\";\n";

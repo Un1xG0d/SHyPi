@@ -240,7 +240,7 @@
                       <i class="material-icons">create_new_folder</i>
                     </span>
                   </div>
-                  <input class="form-control" name="filename" value="timelapse" type="text">
+                  <input class="form-control" name="filename" value="timelapse-filename" type="text">
                 </div>
               </div>
               <div class="form-group">

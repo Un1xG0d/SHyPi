@@ -9,9 +9,7 @@
         $row = mysqli_fetch_row($result);
         // Write settings values to the webpage
         if ($title == "ds18b20_temp_hi" || $title == "ds18b20_temp_low" || $title == "atlas_temp_hi" || $title == "atlas_temp_low") {
-            $c = $row[0];
-            $f = ($c * 9/5) + 32;
-            echo"document.getElementById(\"" .$title. "\").value = \"".$f."\";\n";
+            echo"document.getElementById(\"" .$title. "\").value = \"".$row[0]."\";\n";
         } else {
             echo"document.getElementById(\"" .$title. "\").value = \"".$row[0]."\";\n";
         }

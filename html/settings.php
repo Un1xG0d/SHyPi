@@ -226,12 +226,14 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Hardware Tools</h3>
+                  <h3 class="mb-0">Delete Readings from Database</h3>
                 </div>
               </div>
             </div>
-            <button type="button" class="btn btn-outline-warning btn-block" onclick="Restart()">Restart</button>
-            <button type="button" class="btn btn-outline-danger btn-block" onclick="Shutdown()">Shutdown</button>
+            <button type="button" class="btn btn-outline-danger btn-block" onclick="Delete_MySQL(0)">Delete All</button>
+            <button type="button" class="btn btn-outline-info btn-block" onclick="Delete_MySQL(2)">Over 2 Days</button>
+            <button type="button" class="btn btn-outline-primary btn-block" onclick="Delete_MySQL(7)">Over 1 Week</button>
+            <button type="button" class="btn btn-outline-default btn-block" onclick="Delete_MySQL(30)">Over 1 Month</button>
           </div>
         </div>
         <div class="col-xl-4 mb-5 mb-xl-0">
@@ -239,14 +241,12 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Delete Readings from Database</h3>
+                  <h3 class="mb-0">Hardware Tools</h3>
                 </div>
               </div>
             </div>
-            <button type="button" class="btn btn-outline-danger btn-block" onclick="Delete_MySQL(0)">Delete All</button>
-            <button type="button" class="btn btn-outline-info btn-block" onclick="Delete_MySQL(2)">Over 2 Days</button>
-            <button type="button" class="btn btn-outline-default btn-block" onclick="Delete_MySQL(7)">Over 1 Week</button>
-            <button type="button" class="btn btn-outline-primary btn-block" onclick="Delete_MySQL(30)">Over 1 Month</button>
+            <button type="button" class="btn btn-outline-warning btn-block" onclick="Restart()">Restart</button>
+            <button type="button" class="btn btn-outline-danger btn-block" onclick="Shutdown()">Shutdown</button>
           </div>
         </div>
       </div>
@@ -256,7 +256,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Timelapse Creator</h3>
+                  <h3 class="mb-0">Update Settings</h3>
                 </div>
               </div>
             </div>

@@ -32,9 +32,6 @@
         //$date_link = "<a href='camimages/".$date_sanitized.".jpg'>".$short_date."</a>";
         $date_link = "camimages/".$date_sanitized.".jpg";
 
-        $c = $row[$sensor_name];
-        $f = ($c * 9/5) + 32;
-
         if ($sensor_name == "ds18b20_temp") {
             //Value
             $c = $row[$sensor_name];
