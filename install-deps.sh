@@ -20,3 +20,8 @@ chown www-data:www-data /var/www/html/php/restart.php
 echo "www-data	ALL=(root) NOPASSWD: /sbin/reboot, /sbin/poweroff" >> /etc/sudoers
 
 (sudo crontab -l 2>/dev/null; echo "@reboot python /home/pi/Desktop/Serenity-HydroPi.py") | sudo crontab -
+
+ls /sys/bus/w1/devices/ #find DS18B20 temp sensor device id
+
+#MySQL
+#CREATE TABLE notes (dateandtime VARCHAR(30),notes VARCHAR(1500)); 
