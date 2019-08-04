@@ -36,6 +36,11 @@
 </head>
 
 <body class="">
+  <script>
+    <?php
+      include "php/sensor_col_names.php";
+    ?>
+  </script>
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
@@ -223,7 +228,7 @@
         <div class="header-body">
           <!-- Card stats -->
           <div class="row">
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-4 col-lg-6">
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">
                   <div class="row">
@@ -240,13 +245,13 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-4 col-lg-6">
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Sensors</h5>
-                      <span class="h2 font-weight-bold mb-0">2</span>
+                      <span class="h2 font-weight-bold mb-0"><?php echo $sensornumber; ?></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-success text-white rounded-circle shadow">
@@ -257,7 +262,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-4 col-lg-6">
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">
                   <div class="row">
@@ -281,7 +286,21 @@
     </div>
     <div class="container-fluid mt--7">
       <div class="row mt-5">
-        <div class="col-xl-12 mb-5 mb-xl-0">
+        <div class="col-xl-6 mb-5 mb-xl-0">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">Welcome to SHyPi</h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <button type="button" name="taketour" id="taketour" class="btn btn-primary btn-block">TAKE TOUR OF CONSOLE</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
@@ -297,13 +316,11 @@
                   <tr>
                     <th scope="col">Type</th>
                     <th scope="col">Current</th>
-                    <th scope="col">Average</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
                     // Read the sensors that are connected from the database and create a row for each
-                    include "php/sensor_col_names.php";
                     foreach ($colnames as $title) {
                       echo "<tr>";
                       echo "<th scope=\"row\">";
@@ -311,9 +328,6 @@
                       echo "</th>";
                       echo "<td>";
                       echo "<h5 id=\"" .$title. "_curr\"></h5>";
-                      echo "</td>";
-                      echo "<td>";
-                      echo "<h5 id=\"" .$title. "_avg\"></h5>";
                       echo "</td>";
                       echo "</tr>";
                     }

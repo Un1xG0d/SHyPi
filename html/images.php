@@ -239,59 +239,61 @@
                 </div>
               </div>
             </div>
-            <div class='gallerycontainer'>
-             <div class="gallery">
-             
-              <?php 
-              // Image extensions
-              $image_extensions = array("png","jpg","jpeg","gif");
+            <div class="card-body">
+              <div class='gallerycontainer'>
+               <div class="gallery">
+               
+                <?php 
+                // Image extensions
+                $image_extensions = array("png","jpg","jpeg","gif");
 
-              // Target directory
-              $dir = 'camimages/';
-              if (is_dir($dir)){
-             
-               if ($dh = opendir($dir)){
-                $count = 1;
+                // Target directory
+                $dir = 'camimages/';
+                if (is_dir($dir)){
+               
+                 if ($dh = opendir($dir)){
+                  $count = 1;
 
-                // Read files
-                while (($file = readdir($dh)) !== false){
+                  // Read files
+                  while (($file = readdir($dh)) !== false){
 
-                 if($file != '' && $file != '.' && $file != '..'){
+                   if($file != '' && $file != '.' && $file != '..'){
 
-                  // Image path
-                  $image_name = (string) $file;
-                  $image_path = "camimages/".$file;
-             
-                  $image_ext = pathinfo($image_path, PATHINFO_EXTENSION);
+                    // Image path
+                    $image_name = (string) $file;
+                    $image_path = "camimages/".$file;
+               
+                    $image_ext = pathinfo($image_path, PATHINFO_EXTENSION);
 
-                  // Check its not folder and it is image file
-                  if(!is_dir($image_path) && 
-                     in_array($image_ext,$image_extensions)){
-               ?>
+                    // Check its not folder and it is image file
+                    if(!is_dir($image_path) && 
+                       in_array($image_ext,$image_extensions)){
+                 ?>
 
-                   <!-- Image -->
-                   <a href="<?php echo $image_path; ?>">
-                    <img src="<?php echo $image_path; ?>" alt="" title="<?php echo $image_name; ?>"/>
-                   </a>
-                   <!-- --- -->
-                   <?php
+                     <!-- Image -->
+                     <a href="<?php echo $image_path; ?>">
+                      <img src="<?php echo $image_path; ?>" alt="" title="<?php echo $image_name; ?>"/>
+                     </a>
+                     <!-- --- -->
+                     <?php
 
-                   // Break
-                   if( $count%4 == 0){
-                   ?>
-                     <div class="clear"></div>
-                   <?php 
+                     // Break
+                     if( $count%4 == 0){
+                     ?>
+                       <div class="clear"></div>
+                     <?php 
+                     }
+                     $count++;
+                    }
                    }
-                   $count++;
+               
                   }
+                  closedir($dh);
                  }
-             
                 }
-                closedir($dh);
-               }
-              }
-             ?>
-             </div>
+               ?>
+               </div>
+              </div>
             </div>
           </div>
         </div>

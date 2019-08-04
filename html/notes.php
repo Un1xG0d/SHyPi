@@ -161,7 +161,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="index.php">Dashboard</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="notes.php">Notes</a>
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
@@ -264,27 +264,29 @@
                 </div>
               </div>
             </div>
-            <form role="form" action="php/add_note.php" method="post">
-              <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="material-icons">date_range</i>
-                    </span>
+            <div class="card-body">
+              <form role="form" action="php/add_note.php" method="post">
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">date_range</i>
+                      </span>
+                    </div>
+                    <input class="form-control" name="dateandtime" value="<?php echo date('Y/m/d H:i:s'); ?>" type="text">
                   </div>
-                  <input class="form-control" name="dateandtime" value="<?php echo date('Y/m/d H:i:s'); ?>" type="text">
                 </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                    <textarea class="form-control form-control-alternative" name="notes" rows="4" placeholder="Write your notes here ..."></textarea>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                      <textarea class="form-control form-control-alternative" name="notes" rows="4" placeholder="Write your notes here ..."></textarea>
+                  </div>
                 </div>
-              </div>
-              <div class="text-center">
-                <button type="button submit" class="btn btn-primary mt-4">ADD!</button>
-              </div>
-              <br>
-            </form>
+                <div class="text-center">
+                  <button type="button submit" class="btn btn-primary mt-4">ADD NOTE</button>
+                </div>
+                <br>
+              </form>
+            </div>
           </div>
         </div>
       </div>

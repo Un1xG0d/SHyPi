@@ -5,15 +5,17 @@
     foreach ($colnames as $title) {
         if ($title == "ds18b20_temp_hi") {
           echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Air Temp High <sup>&degC</sup>\";\n";
+          echo  "document.getElementById(\"".$title."_namef\").innerHTML = \"Air Temp High <sup>&degF</sup>\";\n";
         }
         else if ($title == "ds18b20_temp_low") {
           echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Air Temp Low <sup>&degC</sup>\";\n";
+          echo  "document.getElementById(\"".$title."_namef\").innerHTML = \"Air Temp Low <sup>&degF</sup>\";\n";
         }
         else if ($title == "atlas_temp_hi") {
-          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Pool Temp High <sup>&degC</sup>\";\n";
+          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Water Temp High <sup>&degC</sup>\";\n";
         }
         else if ($title == "atlas_temp_low") {
-          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Pool Temp Low <sup>&degC</sup>\";\n";
+          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Water Temp Low <sup>&degC</sup>\";\n";
         }
         else if ($title == "ph_hi") {
           echo  "document.getElementById(\"".$title."_name\").innerHTML = \"pH High\";\n";
@@ -34,7 +36,7 @@
           echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Salt Low\";\n";
         }
         else if ($title == "pool_size") {
-          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Pool Volume:\";\n";
+          echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Water Volume:\";\n";
         }
         else if ($title == "offset_percent") {
           echo  "document.getElementById(\"".$title."_name\").innerHTML = \"Alarm Reset Percentage\";\n";

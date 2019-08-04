@@ -230,10 +230,12 @@
                 </div>
               </div>
             </div>
-            <button type="button" class="btn btn-outline-danger btn-block" onclick="Delete_MySQL(0)">Delete All</button>
-            <button type="button" class="btn btn-outline-info btn-block" onclick="Delete_MySQL(2)">Over 2 Days</button>
-            <button type="button" class="btn btn-outline-primary btn-block" onclick="Delete_MySQL(7)">Over 1 Week</button>
-            <button type="button" class="btn btn-outline-default btn-block" onclick="Delete_MySQL(30)">Over 1 Month</button>
+            <div class="card-body">
+              <button type="button" class="btn btn-outline-danger btn-block" onclick="Delete_MySQL(0)">Delete All</button>
+              <button type="button" class="btn btn-outline-info btn-block" onclick="Delete_MySQL(2)">Over 2 Days</button>
+              <button type="button" class="btn btn-outline-primary btn-block" onclick="Delete_MySQL(7)">Over 1 Week</button>
+              <button type="button" class="btn btn-outline-default btn-block" onclick="Delete_MySQL(30)">Over 1 Month</button>
+            </div>
           </div>
         </div>
         <div class="col-xl-4 mb-5 mb-xl-0">
@@ -245,8 +247,10 @@
                 </div>
               </div>
             </div>
-            <button type="button" class="btn btn-outline-warning btn-block" onclick="Restart()">Restart</button>
-            <button type="button" class="btn btn-outline-danger btn-block" onclick="Shutdown()">Shutdown</button>
+            <div class="card-body">
+              <button type="button" class="btn btn-outline-warning btn-block" onclick="Restart()">Restart</button>
+              <button type="button" class="btn btn-outline-danger btn-block" onclick="Shutdown()">Shutdown</button>
+            </div>
           </div>
         </div>
       </div>
@@ -260,30 +264,43 @@
                 </div>
               </div>
             </div>
+              <div class="card-body">
                 <form class="form" method="POST" action="/php/update_settings.php">
-                <fieldset>
+                  <fieldset>
                     <?php
                     // Get the names of all the settings in the database and add an input for each to the form
                     include "php/settings_col_names.php";
                     $count = 0;
                     foreach ($colnames as $title) {
+                      if ($title == "ds18b20_temp_hi" || $title == "ds18b20_temp_low") {
                         echo "<div>\n";
                         echo "<label for=\"text-input\" id=\"" .$title. "_name\"></label>\n";
                         echo "</div>\n";
                         echo "<input name=\"" .$title. "\" class='form-control' id=\"" .$title. "\" autocomplete=\"off\">\n";
+                        echo "<div>\n";
+                        echo "<label for=\"text-input\" id=\"" .$title. "_namef\"></label>\n";
+                        echo "</div>\n";
+                        echo "<input name=\"" .$title. "f\" class='form-control' id=\"" .$title. "f\" readonly autocomplete=\"off\">\n";
+                      } else {
+                        echo "<div>\n";
+                        echo "<label for=\"text-input\" id=\"" .$title. "_name\"></label>\n";
+                        echo "</div>\n";
+                        echo "<input name=\"" .$title. "\" class='form-control' id=\"" .$title. "\" autocomplete=\"off\">\n";
+                      }
                     }
                     ?>
-                    <br>
+                    <center>
                     <button type="button submit" name="singlebutton" id="singlebutton" class="btn btn-primary mt-4">UPDATE SETTINGS</button>
-                    <br>
-                    </fieldset>
+                    </center>
+                  </fieldset>
                 </form>
-                <script>
-                  <?php
-                      // Add web names for each setting values and read all the current settings values
-                      include "php/settings_webpage_names.php";
-                      include "php/initial_settings_data.php";
-                  ?>
+              </div>
+              <script>
+                <?php
+                    // Add web names for each setting values and read all the current settings values
+                    include "php/settings_webpage_names.php";
+                    include "php/initial_settings_data.php";
+                ?>
               </script>
             </div>
         </div>

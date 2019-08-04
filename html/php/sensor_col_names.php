@@ -6,10 +6,12 @@
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         // output data of each row
+        $sensornumber = 0;
         $colnames = array();
         while($row = mysqli_fetch_assoc($result)) {
             if ($row['COLUMN_NAME'] != "timestamp") {
                 array_push($colnames, $row['COLUMN_NAME']);
+                $sensornumber++;
             }
         }
     }

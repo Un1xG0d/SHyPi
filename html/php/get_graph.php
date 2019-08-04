@@ -29,7 +29,6 @@
         $short_date = date("Y/m/d H:i", $time); //same format as picture filenames
         $temp = array();
         $date_sanitized = clean($short_date);
-        //$date_link = "<a href='camimages/".$date_sanitized.".jpg'>".$short_date."</a>";
         $date_link = "camimages/".$date_sanitized.".jpg";
 
         if ($sensor_name == "ds18b20_temp") {

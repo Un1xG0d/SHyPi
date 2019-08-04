@@ -232,53 +232,55 @@
                 </div>
               </div>
             </div>
-            <form role="form" action="processtimelapse.php" method="post">
-              <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="material-icons">create_new_folder</i>
-                    </span>
+            <div class="card-body">
+              <form role="form" action="processtimelapse.php" method="post">
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">create_new_folder</i>
+                      </span>
+                    </div>
+                    <input class="form-control" name="filename" value="timelapse-filename" type="text">
                   </div>
-                  <input class="form-control" name="filename" value="timelapse-filename" type="text">
                 </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="material-icons">date_range</i>
-                    </span>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">date_range</i>
+                      </span>
+                    </div>
+                    <input class="form-control" name="year" placeholder="2019" type="text">
                   </div>
-                  <input class="form-control" name="year" placeholder="2019" type="text">
                 </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="material-icons">date_range</i>
-                    </span>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">date_range</i>
+                      </span>
+                    </div>
+                    <input class="form-control" name="month" placeholder="04" type="text">
                   </div>
-                  <input class="form-control" name="month" placeholder="04" type="text">
                 </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group input-group-alternative mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="material-icons">date_range</i>
-                    </span>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">date_range</i>
+                      </span>
+                    </div>
+                    <input class="form-control" name="day" placeholder="20" type="text">
                   </div>
-                  <input class="form-control" name="day" placeholder="20" type="text">
                 </div>
-              </div>
 
-              <div class="text-center">
-                <button type="button submit" class="btn btn-primary mt-4">DONE!</button>
-              </div>
-              <br>
-            </form>
+                <div class="text-center">
+                  <button type="button submit" class="btn btn-primary mt-4">DONE!</button>
+                </div>
+                <br>
+              </form>
+            </div>
           </div>
         </div>
       </div>
