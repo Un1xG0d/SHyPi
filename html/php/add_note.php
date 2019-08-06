@@ -6,7 +6,7 @@
 
     $sql = "INSERT INTO notes (dateandtime, notes) VALUES (\"".$dateandtime."\",\"".$notes."\"); ";
     if (mysqli_query($conn, $sql)) {
-        $url = "Location: http://10.0.0.153/notes.php";
+        $url = "Location: http://10.0.0.120/notes.php";
 		header($url);
 		die();
             } else {

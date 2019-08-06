@@ -10,6 +10,7 @@
 
 * Template originally coded by Creative Tim
 * Adapted to Serenity by Alan Raff
+
 =========================================================
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
@@ -36,11 +37,6 @@
 </head>
 
 <body class="">
-  <script>
-    <?php
-      include "php/sensor_col_names.php";
-    ?>
-  </script>
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
@@ -121,8 +117,8 @@
         </form>
         <!-- Navigation -->
         <ul class="navbar-nav">
-          <li class="nav-item active">
-          <a class=" nav-link active " href="index.php">
+          <li class="nav-item">
+          <a class=" nav-link " href="index.php">
             <i class="material-icons text-blue">dashboard</i>Dashboard
             </a>
           </li>
@@ -131,18 +127,18 @@
               <i class="material-icons text-blue">bar_chart</i>Graphs
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="grows.php">
+          <li class="nav-item active">
+            <a class="nav-link active" href="grows.php">
               <i class="material-icons text-blue">history</i>Grow History
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="images.php">
+            <a class="nav-link" href="images.php">
               <i class="material-icons text-blue">camera_alt</i>Images
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="notes.php">
+            <a class="nav-link" href="notes.php">
               <i class="material-icons text-blue">note_add</i>Notes
             </a>
           </li>
@@ -171,7 +167,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="index.php">Dashboard</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="grows.php">Grow History</a>
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
@@ -197,31 +193,27 @@
               </div>
             </a>
             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-              <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Welcome!</h6>
-              </div>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-single-02"></i>
-                <span>My profile</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Settings</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-calendar-grid-58"></i>
-                <span>Activity</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-support-16"></i>
-                <span>Support</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-user-run"></i>
-                <span>Logout</span>
-              </a>
+            <div class=" dropdown-header noti-title">
+              <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
+            <a href="profile.php" class="dropdown-item">
+              <i class="ni ni-single-02"></i>
+              <span>My profile</span>
+            </a>
+            <a href="settings.php" class="dropdown-item">
+              <i class="ni ni-settings-gear-65"></i>
+              <span>Settings</span>
+            </a>
+            <a href="support.php" class="dropdown-item">
+              <i class="ni ni-support-16"></i>
+              <span>Support</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#!" class="dropdown-item">
+              <i class="ni ni-user-run"></i>
+              <span>Logout</span>
+            </a>
+          </div>
           </li>
         </ul>
       </div>
@@ -229,128 +221,100 @@
     <!-- End Navbar -->
     <!-- Header -->
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-      <div class="container-fluid">
-        <div class="header-body">
-          <!-- Card stats -->
-          <div class="row">
-            <div class="col-xl-4 col-lg-6">
-              <div class="card card-stats mb-4 mb-xl-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Current Time</h5>
-                      <span class="h5 font-weight-bold mb-0"><?php echo date('Y/m/d H:i:s'); ?></span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-success text-white rounded-circle shadow">
-                        <i class="material-icons">calendar_today</i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-4 col-lg-6">
-              <div class="card card-stats mb-4 mb-xl-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Sensors</h5>
-                      <span class="h2 font-weight-bold mb-0"><?php echo $sensornumber; ?></span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-success text-white rounded-circle shadow">
-                        <i class="material-icons">radio_button_checked</i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-4 col-lg-6">
-              <div class="card card-stats mb-4 mb-xl-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Alarms</h5>
-                      <span class="h2 font-weight-bold mb-0">0</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-success text-white rounded-circle shadow">
-                        <i class="material-icons">notifications</i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
     </div>
     <div class="container-fluid mt--7">
       <div class="row mt-5">
-        <div class="col-xl-6 mb-5 mb-xl-0">
+        <div class="col-xl-12 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Welcome to SHyPi</h3>
+                  <h3 class="mb-0">Grow History</h3>
+                </div>
+                <div class="col text-right">
+                  <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-form">Define Grow</button>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <button type="button" name="taketour" id="taketour" class="btn btn-primary btn-block">TAKE TOUR OF CONSOLE</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-6 mb-5 mb-xl-0">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">Sensors</h3>
-                </div>
+              <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                  <div class="modal-dialog modal- modal-dialog-centered modal-lg" role="document">
+                      <div class="modal-content">
+                          <div class="modal-body p-0">
+                              <div class="card bg-secondary shadow border-0">
+                                  <div class="card-body px-lg-5 py-lg-5">
+                                      <div class="text-center text-muted mb-4">
+                                          <small>Enter grow details below</small>
+                                      </div>
+                                      <form role="form" action="php/define_grow.php" method="post">
+                                          <div class="input-daterange datepicker row align-items-center">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <div class="input-group input-group-alternative">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="material-icons">calendar_today</i></span>
+                                                        </div>
+                                                        <input class="form-control" placeholder="Start date" name="startdate" type="text" value="06/18/2019">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <div class="input-group input-group-alternative">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="material-icons">calendar_today</i></span>
+                                                        </div>
+                                                        <input class="form-control" placeholder="End date" name="enddate" type="text" value="06/22/2019">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                          <div class="form-group">
+                                              <div class="input-group input-group-alternative">
+                                                  <div class="input-group-prepend">
+                                                      <span class="input-group-text">
+                                                        <i class="material-icons">event</i>
+                                                      </span>
+                                                  </div>
+                                                  <input class="form-control" placeholder="Strain Name" name="strainname" type="text">
+                                              </div>
+                                          </div>
+                                          <div class="form-group">
+                                              <div class="input-group input-group-alternative">
+                                                  <div class="input-group-prepend">
+                                                      <span class="input-group-text">
+                                                        <i class="material-icons">person_outline</i>
+                                                      </span>
+                                                  </div>
+                                                  <input class="form-control" placeholder="Grower Name" name="growername" type="text">
+                                              </div>
+                                          </div>
+                                          <div class="form-group">
+                                              <div class="input-group input-group-alternative">
+                                                  <div class="input-group-prepend">
+                                                      <span class="input-group-text">
+                                                        <i class="material-icons">note</i>
+                                                      </span>
+                                                  </div>
+                                                  <textarea class="form-control form-control-alternative" rows="1" placeholder="Other notes ..." name="othernotes"></textarea>
+                                              </div>
+                                          </div>
+                                          <div class="text-center">
+                                              <button type="button submit" class="btn btn-primary my-4">ADD GROW</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </div>
             </div>
-            <div class="table-responsive">
-              <!-- Table -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Current</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                    // Read the sensors that are connected from the database and create a row for each
-                    foreach ($colnames as $title) {
-                      echo "<tr>";
-                      echo "<th scope=\"row\">";
-                      echo "<h5 id=\"" .$title. "_name\"></h5>";
-                      echo "</th>";
-                      echo "<td>";
-                      echo "<h5 id=\"" .$title. "_curr\"></h5>";
-                      echo "</td>";
-                      echo "</tr>";
-                    }
-                  ?>
-                </tbody>
-              </table>
-            </div>
+
           </div>
         </div>
       </div>
-      <script>
-          <?php
-              // populate the sensors panel with updated sensor names and values
-              include "php/sensor_webpage_names.php";
-              include "php/get_current_sensor_values.php";
-              include "php/sensor_check.php";
-          ?>
-      </script>
+
       <!-- Footer -->
       <footer class="footer">
         <div class="row align-items-center justify-content-xl-between">
@@ -367,8 +331,10 @@
   <script src="./assets/js/plugins/jquery/dist/jquery.min.js"></script>
   <script src="./assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <!--   Argon JS   -->
+  <script src="./assets/js/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
   <script src="./assets/js/argon-dashboard.min.js?v=1.1.0"></script>
-  
+
+
 </body>
 
 </html>

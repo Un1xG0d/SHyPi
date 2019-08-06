@@ -8,7 +8,8 @@
 * Copyright 2019 Creative Tim (https://www.creative-tim.com)
 * Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
 
-* Coded by Creative Tim
+* Template originally coded by Creative Tim
+* Adapted to Serenity by Alan Raff
 
 =========================================================
 
@@ -62,7 +63,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
+                <img alt="Image placeholder" src="./assets/img/theme/alanraff.jpg">
               </span>
             </div>
           </a>
@@ -129,6 +130,11 @@
           <li class="nav-item">
             <a class="nav-link " href="graphs.php">
               <i class="material-icons text-blue">bar_chart</i>Graphs
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="grows.php">
+              <i class="material-icons text-blue">history</i>Grow History
             </a>
           </li>
           <li class="nav-item active">
@@ -244,37 +250,28 @@
                     <input class="form-control" name="filename" value="timelapse-filename" type="text">
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group input-group-alternative mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="material-icons">date_range</i>
-                      </span>
-                    </div>
-                    <input class="form-control" name="year" placeholder="2019" type="text">
+                <div class="input-daterange datepicker row align-items-center">
+                  <div class="col">
+                      <div class="form-group">
+                          <div class="input-group input-group-alternative">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="material-icons">calendar_today</i></span>
+                              </div>
+                              <input class="form-control" placeholder="Start date" name="startdate" type="text" value="06/18/2019">
+                          </div>
+                      </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group input-group-alternative mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="material-icons">date_range</i>
-                      </span>
-                    </div>
-                    <input class="form-control" name="month" placeholder="04" type="text">
+                  <div class="col">
+                      <div class="form-group">
+                          <div class="input-group input-group-alternative">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="material-icons">calendar_today</i></span>
+                              </div>
+                              <input class="form-control" placeholder="End date" name="enddate" type="text" value="06/22/2019">
+                          </div>
+                      </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group input-group-alternative mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="material-icons">date_range</i>
-                      </span>
-                    </div>
-                    <input class="form-control" name="day" placeholder="20" type="text">
-                  </div>
-                </div>
-
+              </div>
                 <div class="text-center">
                   <button type="button submit" class="btn btn-primary mt-4">DONE!</button>
                 </div>
@@ -301,6 +298,7 @@
   <script src="./assets/js/plugins/jquery/dist/jquery.min.js"></script>
   <script src="./assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <!--   Argon JS   -->
+  <script src="./assets/js/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
   <script src="./assets/js/argon-dashboard.min.js?v=1.1.0"></script>
   
 </body>

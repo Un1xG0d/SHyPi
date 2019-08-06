@@ -8,7 +8,8 @@
 * Copyright 2019 Creative Tim (https://www.creative-tim.com)
 * Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
 
-* Coded by Creative Tim
+* Template originally coded by Creative Tim
+* Adapted to Serenity by Alan Raff
 
 =========================================================
 
@@ -57,7 +58,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
+                <img alt="Image placeholder" src="./assets/img/theme/alanraff.jpg">
               </span>
             </div>
           </a>
@@ -124,6 +125,11 @@
           <li class="nav-item">
             <a class="nav-link " href="graphs.php">
               <i class="material-icons text-blue">bar_chart</i>Graphs
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="grows.php">
+              <i class="material-icons text-blue">history</i>Grow History
             </a>
           </li>
           <li class="nav-item">
@@ -284,7 +290,6 @@
                 <div class="text-center">
                   <button type="button submit" class="btn btn-primary mt-4">ADD NOTE</button>
                 </div>
-                <br>
               </form>
             </div>
           </div>

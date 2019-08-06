@@ -8,7 +8,8 @@
 * Copyright 2019 Creative Tim (https://www.creative-tim.com)
 * Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
 
-* Coded by Creative Tim
+* Template originally coded by Creative Tim
+* Adapted to Serenity by Alan Raff
 
 =========================================================
 
@@ -57,7 +58,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
+                <img alt="Image placeholder" src="./assets/img/theme/alanraff.jpg">
               </span>
             </div>
           </a>
@@ -124,6 +125,11 @@
           <li class="nav-item">
             <a class="nav-link " href="graphs.php">
               <i class="material-icons text-blue">bar_chart</i>Graphs
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="grows.php">
+              <i class="material-icons text-blue">history</i>Grow History
             </a>
           </li>
           <li class="nav-item">
@@ -255,7 +261,7 @@
         </div>
       </div>
       <div class="row mt-5">
-        <div class="col-xl-5 mb-5 mb-xl-0">
+        <div class="col-xl-6 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
@@ -290,7 +296,7 @@
                     }
                     ?>
                     <center>
-                    <button type="button submit" name="singlebutton" id="singlebutton" class="btn btn-primary mt-4">UPDATE SETTINGS</button>
+                    <button type="button submit" name="singlebutton" id="singlebutton" class="btn btn-outline-primary btn-block">UPDATE SETTINGS</button>
                     </center>
                   </fieldset>
                 </form>
@@ -303,6 +309,20 @@
                 ?>
               </script>
             </div>
+        </div>
+        <div class="col-xl-6 mb-5 mb-xl-0">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">Export Grow Data</h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <button type="button" class="btn btn-outline-success btn-block" onclick="ExportGrow()">EXPORT</button>
+            </div>
+          </div>
         </div>
     </div>
       <!-- Footer -->
@@ -322,6 +342,7 @@
   <script src="./assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <!--   Argon JS   -->
   <script src="./assets/js/argon-dashboard.min.js?v=1.1.0"></script>
+
   
 </body>
 <!-- Custom JavaScript
