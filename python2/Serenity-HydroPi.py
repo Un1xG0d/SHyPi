@@ -37,8 +37,6 @@ import datetime
 from email.MIMEText import MIMEText
 from email.MIMEMultipart import MIMEMultipart
 import smtplib
-sys.path.insert(1, '/home/pi/SHyPi/') # insert at 1, 0 is the script path (or '' in REPL)
-from SHyPi_web_settings import * # import user-set variables (setupone.php) 
 import socket
 
 # Uncomment sleep if running program at startup with crontab
@@ -378,6 +376,8 @@ def send_email(alert_readings):
         out_of_limit_sensors = (out_of_limit_sensors + "\n" + k + "  -  " +
                                 str(v) + "\n")
 
+    ip = get_ip()
+
     # Build email and send
 
     fromaddr = "wmedphone@gmail.com"
@@ -388,7 +388,7 @@ def send_email(alert_readings):
     msg['To'] = toaddr
     msg['Subject'] = "Serenity-HydroPi Alert"
 
-    body = ("Hi\n\nThe following sensor(s) are indicating that there is a problem that needs your attention:\n{}\nPlease check this by logging into the console.\n").format(out_of_limit_sensors.upper())
+    body = ("Hi.\n\nThe following sensor(s) are indicating that there is a problem that needs your attention:\n{}\nPlease check this by logging into the console at http://"+ip+"\n").format(out_of_limit_sensors.upper())
 
     msg.attach(MIMEText(body, 'plain'))
 
@@ -617,9 +617,9 @@ sensors = OrderedDict([("temp_1", {  # DS18B20 Temperature Sensor
                             "accuracy": 1,
                             "test_for_alert": False,
                             "upper_alert_name": "ds18b20_temp_hi",
-                            "upper_alert_value": airtemphigh_value,
+                            "upper_alert_value": 21.10,
                             "lower_alert_name": "ds18b20_temp_low",
-                            "lower_alert_value": airtemplow_value}),
+                            "lower_alert_value": 15.50}),
 
                        ("atlas_sensor_2", {  # pH/ORP Atlas Scientific Sensor
                             "sensor_type": "atlas_scientific",
@@ -630,9 +630,9 @@ sensors = OrderedDict([("temp_1", {  # DS18B20 Temperature Sensor
                             "accuracy": 1,
                             "test_for_alert": True,
                             "upper_alert_name": "ph_hi",
-                            "upper_alert_value": phhigh_value,
+                            "upper_alert_value": 7.0,
                             "lower_alert_name": "ph_low",
-                            "lower_alert_value": phlow_value})])
+                            "lower_alert_value": 5.0})])
 
 # Define other alert settings
 
@@ -641,14 +641,14 @@ misc_setting = {"offset_percent": 2,  # Stop toggling when close to alert value
                 "email_reset_delay": 300,  # wait 5 minutes before sending another email
                 "read_sensor_delay": 30,  # take a reading every 30 seconds for now
                 "pause_reset_delay": 300,  # pause for 5 minutes
-                "to_email": email_value}
+                "to_email": "test@gmail.com"}
 
 # Define MySQL database login settings
 
 servername = "localhost"
-username = "serenityadmin"
+username = "grow"
 password = "Serenity2019!"
-dbname = "hydropi"
+dbname = "growbox"
 
 loops = 0  # Set starting loops count for timing relay and sensor readings
 
@@ -664,7 +664,7 @@ pause_loops = 0
 # camera settings
 pygame.camera.init()
 pygame.camera.list_cameras()
-cam = pygame.camera.Camera("/dev/video0",(720,720))
+cam = pygame.camera.Camera("/dev/video0",(720,720)) #webcam path
 cam.start()
 
 #################
