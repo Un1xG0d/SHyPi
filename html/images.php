@@ -241,7 +241,7 @@
                   <h3 class="mb-0">Image Gallery</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="timelapse.php" class="btn btn-sm btn-primary">Make Timelapse</a>
+                  <a href="timelapse.php" class="btn btn-sm btn-outline-primary">Make Timelapse</a>
                 </div>
               </div>
             </div>

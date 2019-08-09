@@ -244,12 +244,12 @@
             <center>
               <div>
                   <ul>
-                      <li><a type="button" href="#" class="btn btn-sm btn-primary" onclick="drawChart(1);">1 Day</a></li>
-                      <li><a type="button" href="#" class="btn btn-sm btn-primary" onclick="drawChart(7);">1 Week</a></li>
-                      <li><a type="button" href="#" class="btn btn-sm btn-primary" onclick="drawChart(30);">1 Month</a></li>
-                      <li><a type="button" href="#" class="btn btn-sm btn-primary" onclick="drawChart(90);">3 Months</a></li>
-                      <li><a type="button" href="#" class="btn btn-sm btn-primary" onclick="drawChart(180);">6 Months</a></li>
-                      <li><a type="button" href="#" class="btn btn-sm btn-primary" onclick="drawChart(365);">1 Year</a></li>
+                      <li><a type="button" href="#" class="btn btn-sm btn-outline-primary" onclick="drawChart(1);">1 Day</a></li>
+                      <li><a type="button" href="#" class="btn btn-sm btn-outline-primary" onclick="drawChart(7);">1 Week</a></li>
+                      <li><a type="button" href="#" class="btn btn-sm btn-outline-primary" onclick="drawChart(30);">1 Month</a></li>
+                      <li><a type="button" href="#" class="btn btn-sm btn-outline-primary" onclick="drawChart(90);">3 Months</a></li>
+                      <li><a type="button" href="#" class="btn btn-sm btn-outline-primary" onclick="drawChart(180);">6 Months</a></li>
+                      <li><a type="button" href="#" class="btn btn-sm btn-outline-primary" onclick="drawChart(365);">1 Year</a></li>
                   </ul>
               </div>
             </center>

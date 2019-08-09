@@ -288,7 +288,7 @@
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="button submit" class="btn btn-primary mt-4">ADD NOTE</button>
+                  <button type="button submit" class="btn btn-outline-primary mt-4">ADD NOTE</button>
                 </div>
               </form>
             </div>

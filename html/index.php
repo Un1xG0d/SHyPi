@@ -301,7 +301,7 @@
               </div>
             </div>
             <div class="card-body">
-              <button type="button" name="taketour" id="taketour" class="btn btn-primary btn-block">TAKE TOUR OF CONSOLE</button>
+              <button type="button" name="taketour" id="taketour" class="btn btn-outline-primary btn-block">TAKE TOUR OF CONSOLE</button>
             </div>
           </div>
         </div>

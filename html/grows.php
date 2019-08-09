@@ -232,7 +232,7 @@
                   <h3 class="mb-0">Grow History</h3>
                 </div>
                 <div class="col text-right">
-                  <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-form">Define Grow</button>
+                  <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modal-form">Define Grow</button>
                 </div>
               </div>
             </div>
@@ -300,7 +300,7 @@
                                               </div>
                                           </div>
                                           <div class="text-center">
-                                              <button type="button submit" class="btn btn-primary my-4">ADD GROW</button>
+                                              <button type="button submit" class="btn btn-outline-primary my-4">ADD GROW</button>
                                           </div>
                                       </form>
                                   </div>
