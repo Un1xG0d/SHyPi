@@ -2,9 +2,9 @@
 // HYDROPI_CONNECT.PHP
     // Set database login details
     $servername = "localhost";
-    $username = "grow";
+    $username = "serenityadmin";
     $password = "Serenity2019!";
-    $dbname = "growbox";
+    $dbname = "hydropi";
 
     // Create connection
 

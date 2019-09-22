@@ -25,7 +25,7 @@ os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
 #  Define data file for temperature sensors
-temp_sensor_1 = '/sys/bus/w1/devices/28-xxxxxxxxxxxx/w1_slave'
+temp_sensor_1 = '/sys/bus/w1/devices/28-0517c20738ff/w1_slave'
 
 #  Uncomment and insert data file name for attitional sensors
 #temp_sensor_2 = '/sys/bus/w1/devices/28-xxxxxxxxxxxx/w1_slave'
@@ -33,7 +33,7 @@ temp_sensor_1 = '/sys/bus/w1/devices/28-xxxxxxxxxxxx/w1_slave'
 
 #  This definition truncates the number of digits after the decimal point
 #  The sensor normally outputs Celcius values to 3 decimal points 
-def truncate(number, digits) -> float:
+def truncate(number, digits):
     stepper = 10.0 ** digits
     return trunc(stepper * number) / stepper
 

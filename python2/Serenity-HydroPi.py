@@ -613,7 +613,7 @@ sensors = OrderedDict([("temp_1", {  # DS18B20 Temperature Sensor
                             "is_connected": True,
                             "is_ref": False,
                             "ds18b20_file":
-                            "/sys/bus/w1/devices/28-0417c1d3e6ff/w1_slave",
+                            "/sys/bus/w1/devices/28-0517c20738ff/w1_slave",
                             "accuracy": 1,
                             "test_for_alert": False,
                             "upper_alert_name": "ds18b20_temp_hi",
@@ -646,9 +646,9 @@ misc_setting = {"offset_percent": 2,  # Stop toggling when close to alert value
 # Define MySQL database login settings
 
 servername = "localhost"
-username = "grow"
+username = "serenityadmin"
 password = "Serenity2019!"
-dbname = "growbox"
+dbname = "hydropi"
 
 loops = 0  # Set starting loops count for timing relay and sensor readings
 

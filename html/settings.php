@@ -295,6 +295,7 @@
                       }
                     }
                     ?>
+                    <br>
                     <center>
                     <button type="button submit" name="singlebutton" id="singlebutton" class="btn btn-outline-primary btn-block">UPDATE SETTINGS</button>
                     </center>

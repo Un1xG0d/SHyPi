@@ -17,10 +17,11 @@ $final_enddate .= $enddate_array[2];
 $final_enddate .= $enddate_array[0];
 $final_enddate .= $enddate_array[1];
 
-$mkvidcmd = "ffmpeg -r 24 -pattern_type glob -i 'camimages/".$final_startdate."*.jpg' -vcodec libx264 -pix_fmt yuv420p /var/www/html/timelapses/".$filename.".mp4";
+//$mkvidcmd = "ffmpeg -r 24 -pattern_type glob -i 'camimages/".$final_startdate."*.jpg' -vcodec libx264 -pix_fmt rgba /var/www/html/timelapses/".$filename.".mp4";
+$mkvidcmd = "ffmpeg -r 24 -pattern_type glob -i 'camimages/*.jpg' -vcodec libx264 -pix_fmt rgba /var/www/html/timelapses/".$filename.".mp4";
 system($mkvidcmd);
 
-$url = "Location: http://10.0.0.120/timelapses/".$filename.".mp4";
+$url = "Location: http://192.168.1.101/timelapses/".$filename.".mp4";
 header($url);
 die();
 

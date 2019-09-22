@@ -146,7 +146,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="grows.php">
-              <i class="material-icons text-blue">history</i>Grow History
+              <i class="material-icons text-blue">history</i>Grows
             </a>
           </li>
           <li class="nav-item">

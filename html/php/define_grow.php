@@ -25,7 +25,7 @@
 
     $sql = "INSERT INTO grows (startdate, enddate, strainname, growername, othernotes) VALUES (\"".$final_startdate."\",\"".$final_enddate."\",\"".$strainname."\",\"".$growername."\",\"".$othernotes."\"); ";
     if (mysqli_query($conn, $sql)) {
-        $url = "Location: http://10.0.0.120/grows.php";
+        $url = "Location: http://192.168.1.101/grows.php";
 		header($url);
 		die();
             } else {
