@@ -7,8 +7,6 @@ apt-get install -y mariadb-server-10.0 php-mysql
 apt-get install -y python-mysqldb
 apt-get install -y i2c-tools
 
-sleep 180
-
 #Permissions
 mkdir /home/pi/SHyPi
 chown www-data:www-data /home/pi/SHyPi/
@@ -25,12 +23,12 @@ DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.
 DROP DATABASE IF EXISTS test;
 DELETE FROM mysql.db WHERE Db='test';
 FLUSH PRIVILEGES;" >> /home/pi/SHyPi/mysql_secure_install.sql
-sleep 3
+
 mysql -fu root < "/home/pi/SHyPi/mysql_secure_install.sql"
 
 #Install SHyPI source code
 git clone http://10.0.0.93:3000/alan/serenity-hydropi.git /home/pi/SHyPi/src/
-sleep 10
+
 rm -rf /var/www/html/index.html
 cp -r /home/pi/SHyPi/src/html/* /var/www/html/
 
