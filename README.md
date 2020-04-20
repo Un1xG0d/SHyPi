@@ -4,10 +4,11 @@ A heavily modified version of dombold's MyHydroPi pool monitor (https://github.c
 
 ## Demo
 
-https://youtu.be/ri-gNEmVmG0
+[WATCH DEMO VIDEO](https://youtu.be/ri-gNEmVmG0)
 
 ## Notes
 
+* This project is a work in progress, and is not yet intended to be used in a large scale production.
 * A Raspberry Pi 4 is recommended due to MySQL using more RAM than the RPi 2 or 3 can handle.
 * You may need to manually enable i2c on your RPi. This is easy with the raspi-config terminal command.
 * Atlas Scientific brand sensors seemed to work the best in our tests.
@@ -22,7 +23,7 @@ These instructions will get you a copy of the SHyPi project up and running on yo
 
 ### Prerequisites
 
-    apt-get update
+	#Dependencies
     apt-get install -y apache2 php libapache2-mod-php ffmpeg imagemagick mariadb-server-10.0 php-mysql python-mysqldb i2c-tools
 
     #Permissions
@@ -68,12 +69,15 @@ These instructions will get you a copy of the SHyPi project up and running on yo
 
 ### Wiring your Raspberry Pi
 
-Follow the tutorials from: https://myhydropi.com to configure the hardware of your SHyPi.
+Follow the tutorials from: https://myhydropi.com to attach the sensors and configure the hardware of your SHyPi.
+[Connecting pH sensor](https://myhydropi.com/connecting-a-ph-sensor-to-a-raspberry-pi)
+[Connecting air temp sensor](https://myhydropi.com/ds18b20-temperature-sensor-on-a-raspberry-pi)
+[Connecting EC sensor](https://myhydropi.com/connecting-an-electrical-conductivity-sensor-to-a-raspberry-pi)
 
 ## Components
 
-* Python script - responsible for continuously reading the sensors and storing the values in the MySQL database. Also handles sending of email alerts to the recepient specified in the Settings page.
-* PHP dashboard - pulls values from MySQL and generates historical graphs. Allows the user to create timelapse videos from images captured at every sensor reading.
+* Python script - responsible for continuously reading the sensors and storing the values in the MySQL database. Also handles sending of email alerts.
+* PHP dashboard - pulls values from MySQL and generates historical graphs. Allows the user to create timelapse videos from images captured at every sensor reading. User can change their sensor thresholds and email alerting preferences on the Settings page.
 
 ## Authors
 
