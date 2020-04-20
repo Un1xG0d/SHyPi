@@ -1,6 +1,10 @@
 # Serenity HydroPi (SHyPi)
 
-A heavily modified version of dombold's MyHydroPi pool monitor (https://github.com/dombold/MyHydroPi) used for monitoring and alerting on hydroponic grows. PHP web dashboard with live sensor readings and historical data. Generates email alerts when sensor values read outside of your specified range. Out-of-box support for pH, air temp, and EC sensors, but can be adapted to use many more!
+A heavily modified version of dombold's MyHydroPi pool monitor (https://github.com/dombold/MyHydroPi) used for monitoring and alerting on hydroponic grows. Includes a PHP web dashboard with live sensor readings and historical data. Generates email alerts when sensor values read outside of your specified range. Out-of-box support for pH, air temp, and EC sensors, but can be adapted to use many more!
+
+## Demo
+
+https://youtu.be/ri-gNEmVmG0
 
 ## Notes
 
