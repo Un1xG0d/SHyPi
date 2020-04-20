@@ -69,7 +69,7 @@ These instructions will get you a copy of the SHyPi project up and running on yo
 
 ### Wiring your Raspberry Pi
 
-Follow the tutorials from: https://myhydropi.com to attach the sensors and configure the hardware of your SHyPi.
+Follow the tutorials at https://myhydropi.com to attach the sensors and configure the hardware of your SHyPi.
 
 [Connecting pH sensor](https://myhydropi.com/connecting-a-ph-sensor-to-a-raspberry-pi)
 
@@ -84,4 +84,4 @@ Follow the tutorials from: https://myhydropi.com to attach the sensors and confi
 
 ## Authors
 
-* **Alan Raff** - *Lead Developer* - [LinkedIn](https://www.linkedin.com/in/alan-raff-9a217280)
+* **Alan Raff** - *Developer* - [LinkedIn](https://www.linkedin.com/in/alan-raff-9a217280)

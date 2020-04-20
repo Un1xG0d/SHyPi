@@ -637,7 +637,7 @@ sensors = OrderedDict([("temp_1", {  # DS18B20 Temperature Sensor
 misc_setting = {"offset_percent": 2,  # Stop toggling when close to alert value
                 "pause_readings": False,
                 "email_reset_delay": 300,  # wait 5 minutes before sending another email
-                "read_sensor_delay": 30,  # take a reading every 30 seconds for now
+                "read_sensor_delay": 600,  # take a reading every 10 minutes
                 "pause_reset_delay": 300,  # pause for 5 minutes
                 "to_email": "test@gmail.com"}
 
