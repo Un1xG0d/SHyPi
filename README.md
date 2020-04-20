@@ -47,7 +47,7 @@ These instructions will get you a copy of the SHyPi project up and running on yo
 ### Installing SHyPi software
 
 	#Install SHyPI source code
-	git clone http://10.0.0.93:3000/alan/serenity-hydropi.git /home/pi/SHyPi/src/
+	git clone https://github.com/psycoder17/SHyPi.git /home/pi/SHyPi/src/
 
 	rm -rf /var/www/html/index.html
 	cp -r /home/pi/SHyPi/src/html/* /var/www/html/
