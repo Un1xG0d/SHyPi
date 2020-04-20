@@ -2,8 +2,6 @@
 
 ##############################################################################
 #
-# Serenity 2019
-#
 # 1. Read Multiple Sensors - DS18B20 1-wire type Temperature sensors, Atlas
 # Scientific Temperature, pH, Oxidation Reduction Potential (ORP) and
 # Electrical Conductivity sensors and save the results to a MySQL database at
@@ -380,7 +378,7 @@ def send_email(alert_readings):
 
     # Build email and send
 
-    fromaddr = "wmedphone@gmail.com"
+    fromaddr = "email@domain.com"
     toaddr = all_settings["to_email"]
     alladdr = toaddr.split(",")
     msg = MIMEMultipart()
@@ -395,7 +393,7 @@ def send_email(alert_readings):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     try:
         server.starttls()
-        server.login(fromaddr, "Visanoob2019!")
+        server.login(fromaddr, "EmailPassword")
         text = msg.as_string()
         server.sendmail(fromaddr, alladdr, text)
         server.quit()
