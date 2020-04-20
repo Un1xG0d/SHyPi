@@ -70,8 +70,11 @@ These instructions will get you a copy of the SHyPi project up and running on yo
 ### Wiring your Raspberry Pi
 
 Follow the tutorials from: https://myhydropi.com to attach the sensors and configure the hardware of your SHyPi.
+
 [Connecting pH sensor](https://myhydropi.com/connecting-a-ph-sensor-to-a-raspberry-pi)
+
 [Connecting air temp sensor](https://myhydropi.com/ds18b20-temperature-sensor-on-a-raspberry-pi)
+
 [Connecting EC sensor](https://myhydropi.com/connecting-an-electrical-conductivity-sensor-to-a-raspberry-pi)
 
 ## Components
