@@ -80,8 +80,11 @@ echo "www-data	ALL=(root) NOPASSWD: /sbin/reboot, /sbin/poweroff" >> /etc/sudoer
 - - - -
 ## Wiring your Raspberry Pi
 Follow the tutorials at https://myhydropi.com to attach the sensors and configure the hardware of your SHyPi.
+
 [Connecting pH sensor](https://myhydropi.com/connecting-a-ph-sensor-to-a-raspberry-pi)
+
 [Connecting air temp sensor](https://myhydropi.com/ds18b20-temperature-sensor-on-a-raspberry-pi)
+
 [Connecting EC sensor](https://myhydropi.com/connecting-an-electrical-conductivity-sensor-to-a-raspberry-pi)
 - - - -
 ## Project Components
@@ -99,4 +102,5 @@ Follow the tutorials at https://myhydropi.com to attach the sensors and configur
 
 ### Dombold’s MyHydroPi
 [Base Project Guide](https://myhydropi.com)
+
 [Base Project Github](https://github.com/dombold/MyHydroPi)
