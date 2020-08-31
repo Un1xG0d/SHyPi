@@ -97,9 +97,6 @@ Follow the tutorials at https://myhydropi.com to attach the sensors and configur
 	* User can change their sensor thresholds and email alerting preferences on the Settings page.
 - - - -
 ## Resources
-### SHyPi Source Code
-[SHyPi Source Code](https://github.com/psycoder17/SHyPi)
-
 ### Dombold’s MyHydroPi
 [Base Project Guide](https://myhydropi.com)
 
