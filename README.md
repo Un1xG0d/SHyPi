@@ -43,7 +43,7 @@ Follow the tutorials at https://myhydropi.com to attach the sensors and configur
 ### Python script:
 	* Responsible for continuously reading the attached sensors and storing the values in the MySQL database. 
 	* Handles sending of email alerts when a sensor value is above/below your desired setting.
-### PHP dashboard
+### PHP dashboard:
 	* Pulls values from MySQL and generates historical graphs of your sensor data. 
 	* Allows the user to create timelapse videos from images captured at every sensor reading. 
 	* User can change their sensor thresholds and email alerting preferences on the Settings page.
