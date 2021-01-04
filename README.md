@@ -14,66 +14,18 @@ This project is intended for monitoring and alerting on hydroponic grow data. It
 ## Parts List
 https://myhydropi.com/hydropi-parts-list
 - - - -
-## Getting Started (Software)
-### Prerequisites
-#### Install Dependencies
-```
-apt-get install -y apache2 php libapache2-mod-php ffmpeg imagemagick mariadb-server-10.0 php-mysql python-mysqldb i2c-tools
-```
-
-#### Configure File Permissions
-```
-mkdir /home/pi/SHyPi
-chown www-data:www-data /home/pi/SHyPi/
-chmod 777 /home/pi/SHyPi/
-```
-
-#### Create MySQL Configuration Script
-> /home/pi/SHyPi/mysql_secure_install.sql
-
-```
-CREATE DATABASE hydropi;
-USE hydropi;
-CREATE TABLE notes (dateandtime VARCHAR(30),notes VARCHAR(1500)); 
-CREATE TABLE grows (growid INT(11) NOT NULL AUTO_INCREMENT, startdate VARCHAR(12), enddate VARCHAR(12), strainname VARCHAR(25), growername VARCHAR(25), othernotes VARCHAR(1500), PRIMARY KEY (growid));
-GRANT ALL PRIVILEGES ON *.* TO 'serenityadmin'@'localhost' IDENTIFIED BY 'Serenity2019!';
-DELETE FROM mysql.user WHERE User='';
-DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-DROP DATABASE IF EXISTS test;
-DELETE FROM mysql.db WHERE Db='test';
-FLUSH PRIVILEGES;
-```
-
-#### Execute MySQL Configuration Script
-```
-mysql -fu root < "/home/pi/SHyPi/mysql_secure_install.sql"
-```
-
-### Installing SHyPi software
-#### Clone the project source code to your RPi
+## Install SHyPi software
+### Clone the project source code to your Raspberry Pi
 ```
 git clone https://github.com/psycoder17/SHyPi.git /home/pi/SHyPi/src/
-cp -r /home/pi/SHyPi/src/html/* /var/www/html/
 ```
 
-#### Remove default Apache index page
+### Run `install.sh` script to automatically configure your RPi to run this project
 ```
-rm -rf /var/www/html/index.html
-```
-
-#### Configure File Permissions
-```
-chown www-data:www-data /var/www/html/timelapses/
-chmod 777 /var/www/html/timelapses/
+sudo bash /home/pi/SHyPi/src/install.sh
 ```
 
-#### Allow www-data user to reboot machine (from web console buttons)
-```
-chown www-data:www-data /var/www/html/php/restart.php
-echo "www-data	ALL=(root) NOPASSWD: /sbin/reboot, /sbin/poweroff" >> /etc/sudoers
-```
-
-#### Create cronjob to run monitoring script at boot
+### Create cronjob to run monitoring script at boot
 ```
 (sudo crontab -l 2>/dev/null; echo "@reboot python /home/pi/SHyPi/src/python2/Serenity-HydroPi.py") | sudo crontab -
 ```
