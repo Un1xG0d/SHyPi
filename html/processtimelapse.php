@@ -21,7 +21,7 @@ $final_enddate .= $enddate_array[1];
 $mkvidcmd = "ffmpeg -r 24 -pattern_type glob -i 'camimages/*.jpg' -vcodec libx264 -pix_fmt rgba /var/www/html/timelapses/".$filename.".mp4";
 system($mkvidcmd);
 
-$url = "Location: http://192.168.1.101/timelapses/".$filename.".mp4";
+$url = "Location: http://localhost/timelapses/".$filename.".mp4";
 header($url);
 die();
 
